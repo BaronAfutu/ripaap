@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>RIPAAP</title>
+    <link rel="shortcut icon" href="/public/img/ripfavicon.png">
+    <link rel="stylesheet" href="/public/fontawesome-5.15/css/all.min.css" />
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/public/css/datatables.min.css" />
+    <link rel="stylesheet" href="/public/css/select2.min.css" />
+    <link rel="stylesheet" href="/public/css/style.css" />
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow mt-2 rip-nav-pill px-3 mx-1">
+        <a class="navbar-brand" href="#">
+            <img src="/public/img/ripaap_logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            RIPAAP
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto ml-md-5">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Search <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Publication References</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+            </ul>
+            <div class="my-2 my-lg-0">
+                <a href="index.html" class="btn btn-outline-danger my-2 my-sm-0">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <section id="main">
+        <div class="container rip-stretch-heigth">
+
+            <div class="h-100">
+                <div class="card rip-shadow my-5 mx-auto w-100 py-0">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 col-md-3 rip-border-right pb-3 pb-md-0">
+                                <h5 class="font-weight-bold">Select the following:</h5>
+
+                                <form action="#" id="testForm">
+                                    <div class="form-group my-3 ml-3">
+                                        <label class="col-form-label-lg" for="testName">Test Name</label>
+                                        <select name="testName" id="testName" class="form-control select2-base"
+                                            required>
+                                            <option value=""></option>
+                                            <option value="hemoglobin">Hemoglobin</option>
+                                            <option value="whiteBloodCells" disabled>White Blood Cells</option>
+                                            <option value="platelets" disabled>Platelets</option>
+                                        </select>
+                                        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+                                        anyone else.</small> -->
+                                    </div>
+                                    <div class="form-group my-3 ml-3">
+                                        <label class="col-form-label-lg mb-0 pb-0" for="testUnit">Test Unit</label>
+                                        <div class="form-control-lg custom-radio ml-3" id="testUnit">
+                                            <input class="custom-control-input" type="radio" name="testUnit" id="siUnit"
+                                                value="si" checked>
+                                            <label class="custom-control-label" for="siUnit">
+                                                SI unit
+                                            </label>
+                                        </div>
+                                        <div class="form-control-lg custom-radio ml-3" id="testUnit">
+                                            <input class="custom-control-input" type="radio" name="testUnit"
+                                                id="conventional" value="conventional">
+                                            <label class="custom-control-label" for="conventional">
+                                                Conventional
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group my-3 ml-3">
+                                        <label class="col-form-label-lg" for="ageGroup">Age Group</label>
+                                        <select name="ageGroup" id="ageGroup" class="form-control custom-select-sm"
+                                            required>
+                                            <option value=""></option>
+                                            <option value="pediatrics">Pediatrics</option>
+                                            <option value="adults">Adults</option>
+                                            <option value="geriatrics">Geriatrics</option>
+                                        </select>
+                                        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+                                        anyone else.</small> -->
+                                    </div>
+
+                                    <div class="form-group my-3 ml-3">
+                                        <label class="col-form-label-lg" for="country">Country</label>
+                                        <select name="country" id="country" class="form-control select2-base" required>
+                                            <option value="*">All</option>
+                                            <option value="ghana" disabled>Ghana</option>
+                                            <option value="southAfrica" disabled>South Africa</option>
+                                            <option value="kenya" disabled>Kenya</option>
+                                        </select>
+                                        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+                                        anyone else.</small> -->
+                                    </div>
+
+                                    <div class="text-right">
+                                        <input type="submit" class="btn btn-outline-primary shadow mx-2" id="submitBtn"
+                                            value="Submit">
+                                    </div>
+                                </form>
+                            </div>
+
+
+
+
+
+
+                            <div class="col-12 col-md-9 pt-3 pt-md-0 rip-border-left">
+                                <div class="w-100 bg-info text-center text-uppercase text-light mb-4">
+                                    <h6 class="p-3 font-weight-bold">Reference Interval Tables</h6>
+                                </div>
+
+                                <div id="placeholder" class="h-75 my-auto text-center" style="display: block;">
+                                    <div class="h-25 my-5">&nbsp;</div>
+                                    <div class="h-25  h3">Please Select Search Options</div>
+                                    <div class="h-25 my-5">&nbsp;</div>
+                                </div>
+
+
+                                <div id="resultTables" style="display: none;">
+                                    <div class="h5 text-center font-weight-bold">Hemoglobin (g/dL)</div>
+                                    
+                                    <div class="h5">Male Reference Intervals</div>
+                                    <table id="maleRI" class="table table-responsive-lg border shadow">
+                                        <thead class="bg-light">
+                                            <tr>
+                                                <th>Age</th>
+                                                <th>Lower Reference Limit</th>
+                                                <th>Upper Reference Limit</th>
+                                                <th>Analyzer</th>
+                                                <th>Sample Size</th>
+                                                <th>Country</th>
+                                                <th>Link to Publication</th>
+                                            </tr>
+
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>3 - 6 months</td>
+                                                <td>9.3</td>
+                                                <td>12.8</td>
+                                                <td></td>
+                                                <td>316 </td>
+                                                <td>Schmidt et al., 2018 (South Africa)</td>
+                                                <td><a href="https://doi.org/10.1111/tmi.13009">
+                                                    https://doi.org/10.1111/tmi.13009
+                                                </a></td>
+                                            </tr>
+                                            <tr>					
+                                                <td>16 - 17	</td>
+                                                <td>11.1</td>
+                                                <td>16.7</td>
+                                                <td></td>
+                                                <td>110</td>
+                                                <td>Odhiambo et al., 2015 (Kenya)</td>
+                                                <td><a href="https://doi.org/10.1371/journal.pone.0123140">
+                                                    https://doi.org/10.1371/journal.pone.0123140
+                                                </a></td>
+                                            </tr>
+                                        </tbody>
+                                        <!-- <tfoot>
+                                        <th>Age</th>
+                                        <th>Lower Reference Limit</th>
+                                        <th>Upper Reference Limit</th>
+                                        <th>Analyser</th>
+                                        <th>Sample Size</th>
+                                        <th>Country</th>
+                                        <th>Link to Publication</th>
+                                    </tfoot> -->
+                                    </table>
+
+
+
+
+
+
+                                    <div class="h5 mt-5">Female Reference Intervals</div>
+                                    <table id="femaleRI" class="table table-responsive-lg border shadow">
+                                        <thead class="bg-light">
+                                            <tr>
+                                                <th>Age</th>
+                                                <th>Lower Reference Limit</th>
+                                                <th>Upper Reference Limit</th>
+                                                <th>Analyser</th>
+                                                <th>Sample Size</th>
+                                                <th>Country</th>
+                                                <th>Link to Publication</th>
+                                            </tr>
+
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>3 - 6 months</td>
+                                                <td>9.3</td>
+                                                <td>12.8</td>
+                                                <td></td>
+                                                <td>218 </td>
+                                                <td>Schmidt et al., 2018 (South Africa)</td>
+                                                <td><a href="https://doi.org/10.1111/tmi.13009">
+                                                    https://doi.org/10.1111/tmi.13009
+                                                </a></td>
+                                            </tr>
+                                            <tr>					
+                                                <td>16 - 17	</td>
+                                                <td>11.1</td>
+                                                <td>16.7</td>
+                                                <td></td>
+                                                <td>132</td>
+                                                <td>Odhiambo et al., 2015 (Kenya)</td>
+                                                <td><a href="https://doi.org/10.1371/journal.pone.0123140">
+                                                    https://doi.org/10.1371/journal.pone.0123140
+                                                </a></td>
+                                            </tr>
+                                        </tbody>
+                                        <!-- <tfoot>
+                                        <th>Age</th>
+                                        <th>Lower Reference Limit</th>
+                                        <th>Upper Reference Limit</th>
+                                        <th>Analyser</th>
+                                        <th>Sample Size</th>
+                                        <th>Country</th>
+                                        <th>Link to Publication</th>
+                                    </tfoot> -->
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 
+
+
+Page 3
+
+Left Column
+
+Test Name (scroll down to all tests) – I will send you the list but you can use the calipers list too
+
+Test Unit (SI Unit or Conventional)
+
+Age group (Pediatrics, Adults, Geriatrics)
+
+Country (will send you a list of the countries)
+
+
+
+
+ -->
+
+
+
+        </div>
+    </section>
+
+
+
+
+    <footer class="page-footer font-small rip-bg-info pt-1 mt-3 rounded">
+        <div class="container-fluid text-center text-md-left">
+            <div class="row">
+                <div class="col-md-4 mt-md-2 mt-3">
+                    <span>A product of </span> <br>
+                    <a href="#" class="text-uppercase mt-0 h5 pl-2">Sarpong Labs</a>
+                </div>
+                <hr class="clearfix w-100 d-md-none pb-3">
+                <div class="col-12 col-md-8 footer-copyright h5 pt-3">
+                    Copyright &copy; 2023 <a href="#">Sarpong Labs.</a> All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+<script src="/public/js/jquery-3.7.0.min.js"></script>
+<!-- <script src="js/jquery.singlePageNav.min.js"></script> -->
+<script src="/public/js/bootstrap.min.js"></script>
+<script src="/public/js/select2.min.js"></script>
+<script src="/public/js/datatables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.select2-base').select2();
+    });
+
+    $("#testForm").submit(function (e) {
+        e.preventDefault();
+        $("#placeholder").hide();
+        $("#resultTables").show();
+        new DataTable('#maleRI', {
+            columnDefs: [
+                { orderable: false, targets: [1, 2, 6] }
+            ],
+            "lengthChange":false,
+            "searching": false,
+            // order: [[1, 'asc']]
+            // scrollY: 300,
+            // paging: false
+        });
+        new DataTable('#femaleRI', {
+            columnDefs: [
+                { orderable: false, targets: [1, 2, 6] }
+            ],
+            "lengthChange":false,
+            "searching": false
+            // order: [[1, 'asc']]
+            // scrollY: 300,
+            // paging: false
+        });
+        return false;
+    });
+</script>
+
+</html>
