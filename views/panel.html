@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>RIPAAP</title>
+    <link rel="shortcut icon" href="/public/img/ripfavicon.png">
+    <link rel="stylesheet" href="/public/fontawesome-5.15/css/all.min.css">
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/public/css/select2.min.css" />
+    <link rel="stylesheet" href="/public/css/datatables.min.css" />
+    <link rel="stylesheet" href="/public/css/style.css" />
+</head>
+
+<!-- 
+
+Page 2
+
+Login/Register
+
+Login: Email and password
+
+Register: First name, Last name, Email, Institution, Position, City, Country
+
+
+ -->
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow mt-2 rip-nav-pill px-3 mx-1">
+        <a class="navbar-brand" href="#">
+            <img src="/public/img/ripaap_logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            RIPAAP
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto ml-md-5">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#" data-section="#dashboard">
+                        Dashboard <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-section="#users">
+                        Users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-section="#admins">
+                        Admins</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-section="#tests">
+                        Test Types</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-section="#data">
+                        RIPAAP Data</a>
+                </li>
+                <!-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li> -->
+                <!-- <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li> -->
+            </ul>
+            <div class="my-2 my-lg-0">
+                <a href="login.html" class="btn btn-outline-danger my-2 my-sm-0 disabled">Logout</a>
+            </div>
+            <!-- <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form> -->
+        </div>
+    </nav>
+
+
+    <section id="main" class="rip-stretch-heigth">
+        <div class="container">
+
+            <!-- DASHBOARD -->
+            <div class="mt-5 section" id="dashboard" style="min-height: 80vh;">
+                <h3>Dashboard</h3>
+                &nbsp;
+            </div>
+
+
+            <!-- USERS-->
+            <div id="users" class="mt-5 section">
+                <div class="row">
+                    <div class="col-10">
+                        <h3>Users</h3>
+                    </div>
+                    <!-- <div class="col-2 text-right">
+                        <button id="testReload" class="btn btn-outline-success"><i class="fa fa-plus"></i> User</button>
+                    </div> -->
+                </div>
+                <!-- <div class="row">
+                <div class="col-3">
+                    Filter By
+                </div>
+                <div class="col-3"></div>
+            </div> -->
+
+                <table class="table table-responsive table-striped mt-4 pl-3" id="usersTable">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Institution</th>
+                            <th>Country</th>
+                            <th>Created At</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mr</td>
+                            <td>Baron</td>
+                            <td>Afutu</td>
+                            <td>hi@email.com</td>
+                            <td>University of Ghana</td>
+                            <td>Ghana</td>
+                            <td>24<sup>th</sup> July, 20123</td>
+                            <td>
+                                <div class="text-center">
+                                    <button class="btn btn-outline-info py-0 rip-shadow make-admin"
+                                        data-userid="asdaq33wf252asd23" data-toggle="modal"
+                                        data-target="#confirmAdminModal">
+                                        <i class="fa fa-user-cog"></i> <small>Make Admin</small>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mr</td>
+                            <td>Baron</td>
+                            <td>Afutu</td>
+                            <td>hi@email.com</td>
+                            <td>University of Ghana</td>
+                            <td>Ghana</td>
+                            <td>24<sup>th</sup> July, 20123</td>
+                            <td>
+                                <div class="text-center">
+                                    <button class="btn btn-outline-info py-0 rip-shadow make-admin"
+                                        data-userid="as23df33wf25sdfsd23" data-toggle="modal"
+                                        data-target="#confirmAdminModal">
+                                        <i class="fa fa-user-cog"></i> <small>Make Admin</small>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <!--CONFIRM ADMIN MODAL-->
+                <div class="modal fade" id="confirmAdminModal" tabindex="-1" role="dialog"
+                    aria-labelledby="confirmAdmin" aria-hidden="true" data-userid="">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <!-- <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div> -->
+                            <div class="modal-body h4">
+                                Do you want to promote the user to admin?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary">Close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                                    id="confirmAdminBtn">Confirm</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <!-- ADMINS-->
+            <div id="admins" class="mt-5 section">
+                <div class="row">
+                    <div class="col-10">
+                        <h3>Admins</h3>
+                    </div>
+                    <!-- <div class="col-2 text-right">
+                        <button id="testReload" class="btn btn-outline-success"><i class="fa fa-plus"></i> User</button>
+                    </div> -->
+                </div>
+                <!-- <div class="row">
+                <div class="col-3">
+                    Filter By
+                </div>
+                <div class="col-3"></div>
+            </div> -->
+
+                <table class="table table-responsive table-striped mt-4 pl-3" id="adminsTable">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Institution</th>
+                            <th>Country</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mr</td>
+                            <td>Baron</td>
+                            <td>Afutu</td>
+                            <td>hi@email.com</td>
+                            <td>University of Ghana</td>
+                            <td>Ghana</td>
+                            <td>
+                                <div class="text-center">
+                                    <button class="btn btn-outline-danger py-0 rip-shadow drop-admin"
+                                        data-userid="asdaq33wf252asd23" data-toggle="modal"
+                                        data-target="#dropAdminModal">
+                                        <i class="fa fa-user-slash"></i> <small>Drop Admin</small>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mr</td>
+                            <td>Baron</td>
+                            <td>Afutu</td>
+                            <td>hi@email.com</td>
+                            <td>University of Ghana</td>
+                            <td>Ghana</td>
+                            <td>
+                                <div class="text-center">
+                                    <button class="btn btn-outline-danger py-0 rip-shadow drop-admin"
+                                        data-userid="as23df33wf25sdfsd23" data-toggle="modal"
+                                        data-target="#dropAdminModal">
+                                        <i class="fa fa-user-slash"></i> <small>Drop Admin</small>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <!--DROP ADMIN MODAL-->
+                <div class="modal fade" id="dropAdminModal" tabindex="-1" role="dialog" aria-labelledby="dropAdmin"
+                    aria-hidden="true" data-userid="">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <!-- <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div> -->
+                            <div class="modal-body h4">
+                                Do you want to demote the user from admin?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger" id="dropAdminBtn"
+                                    data-dismiss="modal">Confirm</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <!-- TEST TYPES-->
+            <div id="tests" class="mt-5 section">
+                <div class="row">
+                    <div class="col-10">
+                        <h3>Test Types</h3>
+                    </div>
+                    <div class="col-2 text-right">
+                        <button class="btn btn-outline-success" data-toggle="modal" data-target="#addTestModal"><i
+                                class="fa fa-plus"></i> Test</button>
+                    </div>
+                </div>
+                <!-- <div class="row">
+                <div class="col-3">
+                    Filter By
+                </div>
+                <div class="col-3"></div>
+            </div> -->
+
+                <table class="table table-responsive table-striped mt-4 pl-3" id="testsTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>SI Unit</th>
+                            <th>Conventional</th>
+                            <th>Created At</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Hemoglobin</td>
+                            <td>h/ml</td>
+                            <td></td>
+                            <td>24<sub>th</sub> July, 2023</td>
+                            <td>
+                                <div class="text-center" data-testid="test-asdaq33wf252asd23">
+                                    <button class="btn btn-outline-info py-0 rip-shadow edit-test" data-toggle="modal"
+                                        data-target="#editTestModal">
+                                        <i class="fa fa-pencil-alt"></i> <small>Edit</small>
+                                    </button> &nbsp;
+                                    <button class="btn btn-outline-danger py-0 rip-shadow delete-test"
+                                        data-toggle="modal" data-target="#deleteTestModal">
+                                        <i class="fa fa-trash"></i> <small>Delete</small>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Hemoglobin</td>
+                            <td>h/ml</td>
+                            <td></td>
+                            <td>24<sub>th</sub> July, 2023</td>
+                            <td>
+                                <div class="text-center" data-testid="test-as2f33wf252asdqd">
+                                    <button class="btn btn-outline-info py-0 rip-shadow edit-test" data-toggle="modal"
+                                        data-target="#editTestModal">
+                                        <i class="fa fa-pencil-alt"></i> <small>Edit</small>
+                                    </button> &nbsp;
+                                    <button class="btn btn-outline-danger py-0 rip-shadow delete-test"
+                                        data-toggle="modal" data-target="#deleteTestModal">
+                                        <i class="fa fa-trash"></i> <small>Delete</small>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <!--DELETE TEST MODAL-->
+                <div class="modal fade" id="deleteTestModal" tabindex="-1" role="dialog" aria-labelledby="deleteTest"
+                    aria-hidden="true" data-testid="">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <!-- <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div> -->
+                            <div class="modal-body h4">
+                                Are you sure you want to delete this test?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger" id="deleteTestBtn"
+                                    data-dismiss="modal">Yes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--ADD TEST MODAL-->
+                <div class="modal fade" id="addTestModal" tabindex="-1" role="dialog" aria-labelledby="addTest"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <form action="#" method="POST" id="addTestForm">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addTestModalLabel">Add New Test</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body h4">
+
+                                    <div class="input-group mb-3 w-100">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="testnameLable">Test Name</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Name" aria-label="testName"
+                                            aria-describedby="testnameLable" name="testName" id="testName" required>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="units">Units</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="si" id="si" placeholder="SI Unit"
+                                            required>
+                                        <input type="text" class="form-control" name="conventional" id="conventional"
+                                            placeholder="Convention Unit">
+                                    </div>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary discard-form" data-form="addTestForm"
+                                        data-dismiss="modal">Discard</button>
+                                    <input type="submit" class="btn btn-danger" id="addTestBtn" value="Save"></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--EDIT TEST MODAL-->
+                <div class="modal fade" id="editTestModal" tabindex="-1" role="dialog" aria-labelledby="editTest"
+                    aria-hidden="true" data-testid="">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <form action="#" method="POST" id="editTestForm">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addTestModalLabel">Edit Test</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body h4">
+
+                                    <div class="input-group mb-3 w-100">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="testnameLable">Test Name</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Name" aria-label="testName"
+                                            aria-describedby="testnameLable" name="editTestName" id="editTestName"
+                                            required>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="units">Units</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="editSi" id="editSi"
+                                            placeholder="SI Unit" required>
+                                        <input type="text" class="form-control" name="editConventional"
+                                            id="editConventional" placeholder="Convention Unit">
+                                    </div>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary discard-form"
+                                        data-form="editTestForm" data-dismiss="modal">Discard</button>
+                                    <input type="submit" class="btn btn-danger" id="editTestBtn" value="Save"></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <!-- RIPAAP DATA -->
+            <div id="data" class="mt-5 section">
+                <div class="row">
+                    <div class="col-10">
+                        <h3>RIPAAP Records</h3>
+                    </div>
+                    <div class="col-2 text-right">
+                        <button class="btn btn-outline-success" data-toggle="modal" data-target="#addDataModal">
+                            <i class="fa fa-plus"></i> Data</button>
+                    </div>
+                </div>
+                <form action="#" method="POST" id="filterDataForm">
+                    <div class="row w-75 mx-auto mb-3">
+                        <div class="col-2 h4 py-1 text-right">
+                            Filter By
+                        </div>
+                        <div class="col-2">
+                            <select name="filterTestName" id="filterTestName" class="form-control custom-select">
+                                <option value="" disabled>Test Name</option>
+                                <option value="hemoglobin">Hemoglobin</option>
+                                <option value="whiteBloodCells">White Blood Cells</option>
+                                <option value="platelets">Platelets</option>
+                            </select>
+                        </div>
+                        <div class="col-2">
+                            <select name="filterGender" id="filterGender" class="form-control custom-select">
+                                <option value="" disabled>Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        <div class="col-2">
+                            <select name="filterCountry" id="filterCountry" class="form-control custom-select">
+                                <option value="*">All</option>
+                                <option value="male">Ghana</option>
+                                <option value="female">Kenya</option>
+                            </select>
+                        </div>
+                        <div class="col-2 text-right">
+                            <input type="submit" value="Filter" class="btn btn-info rip-shadow">
+                        </div>
+                    </div>
+                </form>
+
+                <table class="table table-responsive table-striped mt-4 pl-3" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>Age</th>
+                            <th>Lower Ref Limit</th>
+                            <th>Upper Ref Limit</th>
+                            <th>Analyser</th>
+                            <th>Sample Size</th>
+                            <th>Country</th>
+                            <th>Link to Publication</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>3 - 6 months</td>
+                            <td>9.3</td>
+                            <td>12.8</td>
+                            <td></td>
+                            <td>218 </td>
+                            <td>Schmidt et al., 2018 (South Africa)</td>
+                            <td><a href="https://doi.org/10.1111/tmi.13009" target="_blank" rel="noreferrer noopener">
+                                    https://doi.org/10.1111/tmi.13009
+                                </a></td>
+                            <td>
+                                <div class="text-center" data-dataid="data-asdaq33wf252asd23">
+                                    <button class="btn btn-outline-info py-0 rip-shadow edit-data" data-toggle="modal"
+                                        data-target="#editDataModal">
+                                        <i class="fa fa-pencil-alt"></i></button> &nbsp;
+                                    <button class="btn btn-outline-danger py-0 rip-shadow delete-data"
+                                        data-toggle="modal" data-target="#deleteDataModal">
+                                        <i class="fa fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>16 - 17 </td>
+                            <td>11.1</td>
+                            <td>16.7</td>
+                            <td></td>
+                            <td>132</td>
+                            <td>Odhiambo et al., 2015 (Kenya)</td>
+                            <td><a href="https://doi.org/10.1371/journal.pone.0123140" target="_blank" rel="noreferrer noopener">
+                                    https://doi.org/10.1371/journal.pone.0123140
+                                </a>
+                            </td>
+                            <td>
+                                <div class="text-center" data-dataid="data-asdaq33wf252a4w37u">
+                                    <button class="btn btn-outline-info py-0 rip-shadow edit-data" data-toggle="modal"
+                                        data-target="#editDataModal">
+                                        <i class="fa fa-pencil-alt"></i></button> &nbsp;
+                                    <button class="btn btn-outline-danger py-0 rip-shadow delete-data"
+                                        data-toggle="modal" data-target="#deleteDataModal">
+                                        <i class="fa fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <!--DELETE DATA MODAL-->
+                <div class="modal fade" id="deleteDataModal" tabindex="-1" role="dialog" aria-labelledby="deleteData"
+                    aria-hidden="true" data-dataid="">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <!-- <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div> -->
+                            <div class="modal-body h4">
+                                Are you sure you want to delete this RIPAAP record?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger" id="deleteDataBtn"
+                                    data-dismiss="modal">Yes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--ADD DATA MODAL-->
+                <div class="modal fade" id="addDataModal" tabindex="-1" role="dialog" aria-labelledby="addData"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <form action="#" method="POST" id="addDataForm">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addDataModalLabel">Add New Data</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body h4">
+
+
+                                    <div class="input-group mb-3 w-100">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="testnameLable">Test Name</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Name" aria-label="testName"
+                                            aria-describedby="testnameLable" name="testName" id="testName" required>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="units">Units</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="si" id="si" placeholder="SI Unit"
+                                            required>
+                                        <input type="text" class="form-control" name="conventional" id="conventional"
+                                            placeholder="Convention Unit">
+                                    </div>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary discard-form" data-form="addDataForm"
+                                        data-dismiss="modal">Discard</button>
+                                    <input type="submit" class="btn btn-danger" id="addDataBtn" value="Save"></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--EDIT DATA MODAL-->
+                <div class="modal fade" id="editDataModal" tabindex="-1" role="dialog" aria-labelledby="editData"
+                    aria-hidden="true" data-dataid="">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <form action="#" method="POST" id="editDataForm">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addDataModalLabel">Edit Data</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body h4">
+
+                                    <!-- Edit form inputs -->
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary discard-form"
+                                        data-form="editDataForm" data-dismiss="modal">Discard</button>
+                                    <input type="submit" class="btn btn-danger" id="editDataBtn" value="Save"></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+    </section>
+
+
+
+
+    <footer class="page-footer font-small rip-bg-info pt-1 mt-3 rounded">
+
+        <!-- Footer Links -->
+        <div class="container-fluid text-center text-md-left">
+
+            <!-- Grid row -->
+            <div class="row">
+
+                <!-- Grid column -->
+                <div class="col-md-4 mt-md-2 mt-3">
+
+                    <!-- Content -->
+                    <span>A product of </span> <br>
+                    <a href="#" class="text-uppercase mt-0 h5 pl-2">Sarpong Labs</a>
+
+                </div>
+                <!-- Grid column -->
+
+                <hr class="clearfix w-100 d-md-none pb-3">
+
+                <div class="col-12 col-md-8 footer-copyright h5 pt-3">
+                    Copyright &copy; 2023 <a href="#">Sarpong Labs.</a> All rights reserved.
+                </div>
+
+                <!-- Grid column -->
+                <!-- <div class="col-md-3 mb-md-0 mb-3">
+
+                    <h5 class="text-uppercase">Links</h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!">Link 1</a>
+                        </li>
+                        <li>
+                            <a href="#!">Link 2</a>
+                        </li>
+                    </ul>
+
+                </div> -->
+                <!-- Grid column -->
+
+                <!-- <div class="col-md-3 mb-md-0 mb-3">
+
+                    <h5 class="text-uppercase">Links</h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!">Link 1</a>
+                        </li>
+                        <li>
+                            <a href="#!">Link 2</a>
+                        </li>
+                    </ul>
+
+                </div> -->
+
+            </div>
+            <!-- Grid row -->
+
+        </div>
+        <!-- Footer Links -->
+
+        <!-- Copyright -->
+        <!-- <div class="footer-copyright text-center py-0">© 2020 Copyright:
+            <a href="/"> MDBootstrap.com</a>
+        </div> -->
+
+
+    </footer>
+
+
+</body>
+<script src="/public/js/jquery-3.7.0.min.js"></script>
+<!-- <script src="js/jquery.singlePageNav.min.js"></script> -->
+<script src="/public/js/bootstrap.min.js"></script>
+<script src="/public/js/datatables.min.js"></script>
+<script type="text/javascript" src="/public/js/select2.min.js"></script>
+<script type="text/javascript" src="/public/js/datatables.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        const data = [
+            {
+                title: "Dr", firstName: 'Baron', lastName: 'Afutu',
+                email: 'hi@you.com', institution: 'UG', country: 'Ghana',
+                createdAt: new Date().toLocaleString(), actions: '<i class="fa fa-user-cog"></i>'
+            }
+        ]
+        new DataTable('#usersTable', {
+
+            // aaData: data,
+            // columns: [
+            //     { data: 'title' },
+            //     { data: 'firstName' },
+            //     { data: 'lastName' },
+            //     { data: 'email' },
+            //     { data: 'institution' },
+            //     { data: 'country' },
+            //     { data: 'createdAt' },
+            //     { data: 'actions' }],
+            columnDefs: [
+                { orderable: false, targets: [3, 7] }
+            ],
+            processing: true,
+            "lengthChange": false,
+            // "searching": false,
+            // order: [[1, 'asc']]
+            // scrollY: 300,
+            // paging: false
+        });
+
+
+        new DataTable('#adminsTable', {
+
+            // aaData: data,
+            // columns: [
+            //     { data: 'title' },
+            //     { data: 'firstName' },
+            //     { data: 'lastName' },
+            //     { data: 'email' },
+            //     { data: 'institution' },
+            //     { data: 'country' },
+            //     { data: 'createdAt' },
+            //     { data: 'actions' }],
+            columnDefs: [
+                { orderable: false, targets: [3, 6] }
+            ],
+            processing: true,
+            "lengthChange": false,
+            // "searching": false,
+            // order: [[1, 'asc']]
+            // scrollY: 300,
+            // paging: false
+        });
+
+
+        new DataTable('#testsTable', {
+
+            // aaData: data,
+            // columns: [
+            //     { data: 'title' },
+            //     { data: 'firstName' },
+            //     { data: 'lastName' },
+            //     { data: 'email' },
+            //     { data: 'institution' },
+            //     { data: 'country' },
+            //     { data: 'createdAt' },
+            //     { data: 'actions' }],
+            columnDefs: [
+                { orderable: false, targets: [1, 2, 4] }
+            ],
+            processing: true,
+            "lengthChange": false,
+            // "searching": false,
+            // order: [[1, 'asc']]
+            // scrollY: 300,
+            // paging: false
+        });
+
+        new DataTable('#dataTable', {
+
+            // aaData: data,
+            // columns: [
+            //     { data: 'title' },
+            //     { data: 'firstName' },
+            //     { data: 'lastName' },
+            //     { data: 'email' },
+            //     { data: 'institution' },
+            //     { data: 'country' },
+            //     { data: 'createdAt' },
+            //     { data: 'actions' }],
+            columnDefs: [
+                { orderable: false, targets: [0, 1, 2, 6, 7] },
+                { width: '100px', targets: 7 },
+            ],
+            processing: true,
+            "lengthChange": false,
+            // "searching": false,
+            // scrollY: 300,
+            // paging: false
+        });
+
+        $(".section").hide();
+        $("#dashboard").show();
+        // $("#data").show(); //for testing
+    });
+
+    $(".nav-link").click(function (e) {
+        e.preventDefault();
+        $(".section").hide();
+        $($(this).data('section')).show();
+        $('.nav-link').removeClass('active');
+        $(this).addClass('active')
+    });
+
+    $("#testReload").click(function (e) {
+        e.preventDefault();
+        const data = [
+            {
+                title: "Dr", firstName: 'Austin', lastName: 'Afutu',
+                email: 'hi@you.com', institution: 'UG', country: 'Ghana',
+                createdAt: new Date().toLocaleString(), actions: '<i class="fa fa-user-cog"></i>'
+            }
+        ]
+        //usersTable.ajax.url(data).load();
+        let dt = $("#usersTable").dataTable();
+        dt.fnClearTable(false);
+        dt.fnAddData(data);
+    });
+
+    $(".make-admin").click(function (e) {
+        e.preventDefault();
+        $("#confirmAdminModal").attr('data-userid', $(this).data('userid'));
+    });
+    $("#confirmAdminBtn").click(function (e) {
+        e.preventDefault();
+        console.log($("#confirmAdminModal").attr('data-userid'));
+    });
+
+    $(".drop-admin").click(function (e) {
+        e.preventDefault();
+        $("#dropAdminModal").attr('data-userid', $(this).data('userid'));
+    });
+    $("#dropAdminBtn").click(function (e) {
+        e.preventDefault();
+        console.log($("#dropAdminModal").attr('data-userid'));
+    });
+
+
+
+    $(".delete-test").click(function (e) {
+        e.preventDefault();
+        $("#deleteTestModal").attr('data-testid', $(this).parent().data('testid'));
+    });
+    $("#deleteTestBtn").click(function (e) {
+        e.preventDefault();
+        console.log($("#deleteTestModal").attr('data-testid'));
+    });
+    $(".edit-test").click(function (e) {
+        e.preventDefault();
+        $("#editTestModal").attr('data-testid', $(this).parent().data('testid'));
+        let editTestForm = document.forms['editTestForm'];
+        editTestForm['editTestName'].value = 'banana';
+        editTestForm['editSi'].value = 'carrot';
+        editTestForm['editConventional'].value = 'mango';
+    });
+    $("#addTestForm").submit(function (e) {
+        e.preventDefault();
+        let newTestForm = document.forms['addTestForm'];
+        const newTest = {
+            name: newTestForm['testName'].value,
+            siUnit: newTestForm['si'].value,
+            conventional: newTestForm['conventional'].value
+        }
+        console.log(newTest)
+        newTestForm.reset()
+        $('#addTestModal').modal('hide');
+        return false;
+    });
+    $("#editTestForm").submit(function (e) {
+        e.preventDefault();
+        let editTestForm = document.forms['editTestForm'];
+        const test = {
+            name: editTestForm['editTestName'].value,
+            siUnit: editTestForm['editSi'].value,
+            conventional: editTestForm['editConventional'].value
+        }
+        console.log(test)
+        editTestForm.reset()
+        $('#editTestModal').modal('hide');
+        return false;
+    });
+    $(".discard-form").click(function (e) {
+        e.preventDefault();
+        document.forms[$(this).data('form')].reset();
+    });
+
+
+
+    $(".delete-data").click(function (e) {
+        e.preventDefault();
+        $("#deleteDataModal").attr('data-dataid', $(this).parent().data('dataid'));
+    });
+    $("#deleteDataBtn").click(function (e) {
+        e.preventDefault();
+        console.log($("#deleteDataModal").attr('data-dataid'));
+    });
+    $(".edit-Data").click(function (e) {
+        e.preventDefault();
+        $("#editDataModal").attr('data-dataid', $(this).parent().data('dataid'));
+        let editDataForm = document.forms['editDataForm'];
+        // editDataForm['editTestName'].value = 'banana';
+        // editDataForm['editSi'].value = 'carrot';
+        // editDataForm['editConventional'].value = 'mango';
+    });
+    $("#addDataForm").submit(function (e) {
+        e.preventDefault();
+        let newDataForm = document.forms['addDataForm'];
+        const newData = {
+            name: newDataForm['testName'].value,
+            siUnit: newDataForm['si'].value,
+            conventional: newDataForm['conventional'].value
+        }
+        console.log(newData)
+        newDataForm.reset()
+        $('#addDataModal').modal('hide');
+        return false;
+    });
+    $("#editDataForm").submit(function (e) {
+        e.preventDefault();
+        let editDataForm = document.forms['editDataForm'];
+        const test = {
+            name: editDataForm['editTestName'].value,
+            siUnit: editDataForm['editSi'].value,
+            conventional: editDataForm['editConventional'].value
+        }
+        console.log(test)
+        editTestForm.reset()
+        $('#editDataModal').modal('hide');
+        return false;
+    });
+
+    $(".discard-form").click(function (e) {
+        e.preventDefault();
+        document.forms[$(this).data('form')].reset();
+    });
+
+
+</script>
+
+</html>

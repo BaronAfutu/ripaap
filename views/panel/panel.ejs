@@ -1,0 +1,24 @@
+<%- include('header') %>
+    <%- include('navbar') %>
+
+
+        <section id="main" class="rip-stretch-heigth">
+            <div class="container">
+                
+                <%- include('dashboard') %>
+                <%- include('users') %>
+                <%- include('admins') %>
+                <%- include('testTypes') %>
+                <%- include('data') %>
+
+            </div>
+        </section>
+
+        <%- include('../templates/footer') %>
+
+        <script src="/js/datatables.min.js"></script>
+        <script type="text/javascript" src="/js/select2.min.js"></script>
+        <script type="text/javascript" src="/js/datatables.min.js"></script>
+        <script type="text/javascript" src="/js/panel.js"></script>
+
+        </html>

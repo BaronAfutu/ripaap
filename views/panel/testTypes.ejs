@@ -1,0 +1,187 @@
+<!-- TEST TYPES-->
+<div id="tests" class="mt-5 section">
+    <div class="row">
+        <div class="col-10">
+            <h3>Test Types</h3>
+        </div>
+        <div class="col-2 text-right">
+            <button class="btn btn-outline-success" data-toggle="modal"
+                data-target="#addTestModal"><i class="fa fa-plus"></i> Test</button>
+        </div>
+    </div>
+    <!-- <div class="row">
+<div class="col-3">
+Filter By
+</div>
+<div class="col-3"></div>
+</div> -->
+
+    <table class="table table-responsive table-striped mt-4 pl-3" id="testsTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>SI Unit</th>
+                <th>Conventional</th>
+                <th>Created At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Hemoglobin</td>
+                <td>h/ml</td>
+                <td></td>
+                <td>24<sub>th</sub> July, 2023</td>
+                <td>
+                    <div class="text-center" data-testid="test-asdaq33wf252asd23">
+                        <button class="btn btn-outline-info py-0 rip-shadow edit-test"
+                            data-toggle="modal" data-target="#editTestModal">
+                            <i class="fa fa-pencil-alt"></i> <small>Edit</small>
+                        </button> &nbsp;
+                        <button class="btn btn-outline-danger py-0 rip-shadow delete-test"
+                            data-toggle="modal" data-target="#deleteTestModal">
+                            <i class="fa fa-trash"></i> <small>Delete</small>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Hemoglobin</td>
+                <td>h/ml</td>
+                <td></td>
+                <td>24<sub>th</sub> July, 2023</td>
+                <td>
+                    <div class="text-center" data-testid="test-as2f33wf252asdqd">
+                        <button class="btn btn-outline-info py-0 rip-shadow edit-test"
+                            data-toggle="modal" data-target="#editTestModal">
+                            <i class="fa fa-pencil-alt"></i> <small>Edit</small>
+                        </button> &nbsp;
+                        <button class="btn btn-outline-danger py-0 rip-shadow delete-test"
+                            data-toggle="modal" data-target="#deleteTestModal">
+                            <i class="fa fa-trash"></i> <small>Delete</small>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <!--DELETE TEST MODAL-->
+    <div class="modal fade" id="deleteTestModal" tabindex="-1" role="dialog"
+        aria-labelledby="deleteTest" aria-hidden="true" data-testid="">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!-- <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div> -->
+                <div class="modal-body h4">
+                    Are you sure you want to delete this test?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" id="deleteTestBtn"
+                        data-dismiss="modal">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--ADD TEST MODAL-->
+    <div class="modal fade" id="addTestModal" tabindex="-1" role="dialog" aria-labelledby="addTest"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="#" method="POST" id="addTestForm">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addTestModalLabel">Add New Test</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body h4">
+
+                        <div class="input-group mb-3 w-100">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="testnameLable">Test Name</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Name"
+                                aria-label="testName" aria-describedby="testnameLable"
+                                name="testName" id="testName" required>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="units">Units</span>
+                            </div>
+                            <input type="text" class="form-control" name="si" id="si"
+                                placeholder="SI Unit" required>
+                            <input type="text" class="form-control" name="conventional"
+                                id="conventional" placeholder="Convention Unit">
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary discard-form"
+                            data-form="addTestForm" data-dismiss="modal">Discard</button>
+                        <input type="submit" class="btn btn-danger" id="addTestBtn"
+                            value="Save"></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!--EDIT TEST MODAL-->
+    <div class="modal fade" id="editTestModal" tabindex="-1" role="dialog"
+        aria-labelledby="editTest" aria-hidden="true" data-testid="">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="#" method="POST" id="editTestForm">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addTestModalLabel">Edit Test</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body h4">
+
+                        <div class="input-group mb-3 w-100">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="testnameLable">Test Name</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Name"
+                                aria-label="testName" aria-describedby="testnameLable"
+                                name="editTestName" id="editTestName" required>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="units">Units</span>
+                            </div>
+                            <input type="text" class="form-control" name="editSi" id="editSi"
+                                placeholder="SI Unit" required>
+                            <input type="text" class="form-control" name="editConventional"
+                                id="editConventional" placeholder="Convention Unit">
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary discard-form"
+                            data-form="editTestForm" data-dismiss="modal">Discard</button>
+                        <input type="submit" class="btn btn-danger" id="editTestBtn"
+                            value="Save"></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

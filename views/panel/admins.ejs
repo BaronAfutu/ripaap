@@ -1,0 +1,92 @@
+<!-- ADMINS-->
+<div id="admins" class="mt-5 section">
+    <div class="row">
+        <div class="col-10">
+            <h3>Admins</h3>
+        </div>
+        <!-- <div class="col-2 text-right">
+    <button id="testReload" class="btn btn-outline-success"><i class="fa fa-plus"></i> User</button>
+</div> -->
+    </div>
+    <!-- <div class="row">
+<div class="col-3">
+Filter By
+</div>
+<div class="col-3"></div>
+</div> -->
+
+    <table class="table table-responsive table-striped mt-4 pl-3" id="adminsTable">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Institution</th>
+                <th>Country</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Mr</td>
+                <td>Baron</td>
+                <td>Afutu</td>
+                <td>hi@email.com</td>
+                <td>University of Ghana</td>
+                <td>Ghana</td>
+                <td>
+                    <div class="text-center">
+                        <button class="btn btn-outline-danger py-0 rip-shadow drop-admin"
+                            data-userid="asdaq33wf252asd23" data-toggle="modal"
+                            data-target="#dropAdminModal">
+                            <i class="fa fa-user-slash"></i> <small>Drop Admin</small>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Mr</td>
+                <td>Baron</td>
+                <td>Afutu</td>
+                <td>hi@email.com</td>
+                <td>University of Ghana</td>
+                <td>Ghana</td>
+                <td>
+                    <div class="text-center">
+                        <button class="btn btn-outline-danger py-0 rip-shadow drop-admin"
+                            data-userid="as23df33wf25sdfsd23" data-toggle="modal"
+                            data-target="#dropAdminModal">
+                            <i class="fa fa-user-slash"></i> <small>Drop Admin</small>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <!--DROP ADMIN MODAL-->
+    <div class="modal fade" id="dropAdminModal" tabindex="-1" role="dialog"
+        aria-labelledby="dropAdmin" aria-hidden="true" data-userid="">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!-- <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div> -->
+                <div class="modal-body h4">
+                    Do you want to demote the user from admin?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" id="dropAdminBtn"
+                        data-dismiss="modal">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,11 +1,48 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<%- include('templates/header') %>
+
+<%- include('templates/navbar.ejs') %>
+
+
+    <section id="main">
+        <div class="container rip-stretch-heigth">
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <div class="mr-md-0 ml-md-auto mx-auto rip-w-75">
+                        <img src="/img/ripaap_logo.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+                <div class="col-12 col-md-8">
+                    <div class="my-2 my-lg-5 rip-mob-center">
+                        <span class="display-1 font-weight-bold">
+                            RIPAAP
+                        </span><br>
+                        <span class="h4">Reference Intervals for Pediatric and Adult African Populations</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="w-100 text-center my-4">
+                <a href="\search" class="btn btn-danger rip-shadow w-75 mx-auto">Search Database</a>
+            </div>
+
+            <p class="text-justify rip-w-75 h5 mx-auto mt-5 mb-4">
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                deserunt mollit anim id est laborum."
+            </p>
+        </div>
+    </section>
+
+
+
+<%- include('templates/footer') %>
+<!-- <script>
+    $(document).ready(function () {
+
+    });
+</script> -->
+
 </html>

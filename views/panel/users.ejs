@@ -1,0 +1,92 @@
+<!-- USERS-->
+<div id="users" class="mt-5 section">
+    <div class="row">
+        <div class="col-10">
+            <h3>Users</h3>
+        </div>
+        <!-- <div class="col-2 text-right">
+    <button id="testReload" class="btn btn-outline-success"><i class="fa fa-plus"></i> User</button>
+</div> -->
+    </div>
+    <!-- <div class="row">
+<div class="col-3">
+Filter By
+</div>
+<div class="col-3"></div>
+</div> -->
+
+    <table class="table table-responsive table-striped mt-4 pl-3" id="usersTable">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Institution</th>
+                <th>Country</th>
+                <th>Created At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Mr</td>
+                <td>Baron</td>
+                <td>Afutu</td>
+                <td>hi@email.com</td>
+                <td>University of Ghana</td>
+                <td>Ghana</td>
+                <td>24<sup>th</sup> July, 20123</td>
+                <td>
+                    <div class="text-center">
+                        <button class="btn btn-outline-info py-0 rip-shadow make-admin" data-userid="asdaq33wf252asd23"
+                            data-toggle="modal" data-target="#confirmAdminModal">
+                            <i class="fa fa-user-cog"></i> <small>Make Admin</small>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Mr</td>
+                <td>Baron</td>
+                <td>Afutu</td>
+                <td>hi@email.com</td>
+                <td>University of Ghana</td>
+                <td>Ghana</td>
+                <td>24<sup>th</sup> July, 20123</td>
+                <td>
+                    <div class="text-center">
+                        <button class="btn btn-outline-info py-0 rip-shadow make-admin"
+                            data-userid="as23df33wf25sdfsd23" data-toggle="modal" data-target="#confirmAdminModal">
+                            <i class="fa fa-user-cog"></i> <small>Make Admin</small>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <!--CONFIRM ADMIN MODAL-->
+    <div class="modal fade" id="confirmAdminModal" tabindex="-1" role="dialog" aria-labelledby="confirmAdmin"
+        aria-hidden="true" data-userid="">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!-- <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div> -->
+                <div class="modal-body h4">
+                    Do you want to promote the user to admin?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        id="confirmAdminBtn">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -33,7 +33,8 @@ a {
 .rip-border-right {
   border-right: 1px solid #dee2e6;
 }
-td{
+
+table.dataTable tbody td {
   vertical-align: middle;
 }
 
