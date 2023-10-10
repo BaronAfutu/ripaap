@@ -4,9 +4,9 @@
 
 
         <section id="main">
-            <div class="container">
+            <div class="container rip-stretch-heigth pt-3">
 
-                <div id="loginCard" class="py-5 my-5" <% if(typeof status!='undefined' && status.form!='login'){ %> 
+                <div id="loginCard" class="py-5 my-4" <% if(typeof status!='undefined' && status.form!='login'){ %> 
                     style="display: none;" <% } %> >
                         <div class="card rip-shadow my-5 mx-auto rip-w-50">
                             <form action="/users/login" method="POST">

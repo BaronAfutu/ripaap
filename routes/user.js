@@ -2,25 +2,12 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
-// const { execQuery, decodeToken } = require('../../controllers/GeneralController');
 const { userValidation, userLoginValidation } = require('../helpers/validation');
 /**
  * @type {mongoose.Model}
  */
 const User = require('../models/user');
 
-// const { error, value } = categoryValidation.validate(req.body);
-// if (error) return res.status(400).json({ status: false, errMsg: error.details[0].message });
-
-/* GET users listing. */
-// router.get('/', async function (req, res) {
-//   const userList = await User.find({}, '-password -__v');
-//   if (!userList) {
-//     res.status(500).json({ success: false });
-//     return;
-//   }
-//   res.json(userList);
-// });
 
 router.get('/register', (req,res)=>{
   res.redirect('/login');
@@ -41,7 +28,7 @@ router.post('/register', async (req, res) => {
    });
     
   } 
-  let message = 'Couldn\'t register. Something went wrong.';
+  let message = "Couldn't register. Something went wrong.";
 
   const { title, firstName, lastName, email, institution, position, city, country, password } = value;
   

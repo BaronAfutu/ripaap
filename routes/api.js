@@ -2,7 +2,12 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
-const { testValidation, userLoginValidation } = require('../helpers/validation');
+const {
+  createData,
+  getData,
+  editData
+} = require('../controllers/DataController')
+const { testValidation } = require('../helpers/validation');
 /**
  * @type {mongoose.Model}
  */
@@ -26,16 +31,16 @@ const decodeToken = async (authorizationString) => {
   }
 }
 
+// may require paid access for non-admin users
 router.get('/tests', async (req, res) => {
   const testList = await Test.find();
   if (!testList) return res.status(500).json({ success: false });
   res.json(testList);
 })
 
-// const { error, value } = categoryValidation.validate(req.body);
-// if (error) return res.status(400).json({ status: false, errMsg: error.details[0].message });
+router.get('/data/:test', getData);
 
-/* GET users listing. */
+/* Require Admin Accesss */
 
 router.use('/', async (req, res, next) => {
   const decoded = await decodeToken(req.headers.authorization);
@@ -43,6 +48,11 @@ router.use('/', async (req, res, next) => {
   if (decoded.admin) return next();
   return res.status(404);
 })
+
+
+router.post('/data/:test/', createData);
+router.post('/data/:test/:id', editData);
+
 
 router.get('/users', async function (req, res) {
   const userList = await User.find({ isInternalUser: false }, '-password -__v');
@@ -52,6 +62,8 @@ router.get('/users', async function (req, res) {
   }
   res.json(userList);
 });
+
+
 
 router.get('/admins', async function (req, res) {
   const userList = await User.find({ isInternalUser: true }, '-password -__v');
@@ -73,11 +85,14 @@ router.post('/dropAdmin/:id', async (req, res) => {
   res.status(200).json({})
 });
 
+
+
+
 router.post('/tests/', async (req, res) => {
   const { error, value } = testValidation.validate(req.body);
   if (error) return res.status(400).json({ message: error.details[0].message })
 
-  await Test.findOne({ name: value.name }).then(existingTest => {
+  await Test.findOne({ slug: value.slug }).then(existingTest => {
     if (existingTest) return res.status(302).json({ message: 'Test Already Created!!' });
     const test = new Test(value);
 
@@ -95,18 +110,27 @@ router.post('/tests/', async (req, res) => {
 
 
 
-router.post('/tests/:id', async (req, res) => {
+router.post('/tests/:slug', async (req, res) => {
   const { error, value } = testValidation.validate(req.body);
   if (error) return res.status(400).json({ message: error.details[0].message })
-try {
-  const existingTest = await Test.findById(req.params.id);
-  if (!existingTest) return res.status(302).json({ message: 'Test Not Found!!' });
-} catch (error) {
-  console.log(error);
-  return res.status(500).json({});
-}
+  try {
+    console.log(req.params.slug);
+    const existingTest = await Test.findOne({slug:req.params.slug});
+    if (!existingTest) return res.status(302).json({ message: 'Test Not Found!!' });
+    console.log(existingTest);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({});
+  }
 
-  await Test.findByIdAndUpdate(req.params.id, { name: value.name, si: value.si, conventional: value.conventional })
+  // Find by slug and update instead. Slugs shouldn't update
+  // Looks Like ID's might be messingup Investigate more
+  // Maybe change all from id base to slug base
+  await Test.findOneAndUpdate({slug:req.params.slug}, {
+    name: value.name,
+    si: value.si,
+    conventional: value.conventional
+  })
     .then(updatedTest => {
       return res.json(updatedTest);
     }).catch(err => {
@@ -115,8 +139,8 @@ try {
     });
 })
 
-router.delete('/tests/:id', (req, res) => {
-  Test.findByIdAndDelete(req.params.id).then(() => {
+router.delete('/tests/:slug', (req, res) => {
+  Test.findOneAndDelete({slug:req.params.slug}).then(() => {
     return res.json({ message: "Deleted!" });
   }).catch(err => {
     return res.status(500).json(error)

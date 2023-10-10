@@ -2,8 +2,7 @@ var express = require('express');
 const jwt = require('jsonwebtoken');
 var router = express.Router();
 const mongoose = require('mongoose');
-// const { execQuery, decodeToken } = require('../../controllers/GeneralController');
-const { userValidation, userLoginValidation } = require('../helpers/validation');
+// const { userValidation, userLoginValidation } = require('../helpers/validation');
 /**
  * @type {mongoose.Model}
  */
@@ -26,19 +25,9 @@ router.use('/', async (req, res, next) => {
   next();
 })
 
-
-/* GET users listing. */
 router.get('/', function(req, res, next) {
   res.render('panel/panel',{token: jwt.sign(req.session.user,process.env.SECRET)})
 });
 
-// router.post('/',(req,res)=>{
-//   if(req.body.username=="admin" && req.body.password=="admin"){
-//     res.json({
-//       status:"success",
-//       token: jwt.sign({name:"Admin",role:"admin"},process.env.SECRET)
-//     })
-//   }
-// })
 
 module.exports = router;

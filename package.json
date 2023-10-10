@@ -2,9 +2,6 @@
   "name": "ripaap",
   "version": "0.1.0",
   "description": "Reference Intervals for Pediatric and Adult African Populations",
-  "engines": {
-    "node": "18.x || 16.x"
-  },
   "private": true,
   "main": "./bin/www",
   "scripts": {

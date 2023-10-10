@@ -10,10 +10,8 @@ const userSchema = mongoose.Schema({
     city: { type: String, required: true },
     country: { type: String, required: true },
     isInternalUser: { type: Boolean, default: false, required: true },
-    password: { type: String, required: true },
-    updatedAt: { type: Date, default: Date.now() },
-    createdAt: { type: Date, default: Date.now() }
-})
+    password: { type: String, required: true }
+}, { timestamps: true })
 
 const User = mongoose.model("User", userSchema);
 

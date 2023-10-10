@@ -1,20 +1,20 @@
 const addEvents = () => {
     $(".make-admin").click(function (e) {
         e.preventDefault();
-        $("#confirmAdminModal").attr('data-userid', $(this).data('userid'));
+        $("#confirmAdminModal").attr('data-userid', $(this).attr('data-userid'));
     });
     $(".drop-admin").click(function (e) {
         e.preventDefault();
         // console.log('pressed')
-        $("#dropAdminModal").attr('data-userid', $(this).data('userid'));
+        $("#dropAdminModal").attr('data-userid', $(this).attr('data-userid'));
     });
     $(".delete-test").click(function (e) {
         e.preventDefault();
-        $("#deleteTestModal").attr('data-testid', $(this).parent().data('testid'));
+        $("#deleteTestModal").attr('data-testslug', $(this).parent().attr('data-testslug'));
     });
     $(".edit-test").click(function (e) {
         e.preventDefault();
-        $("#editTestModal").attr('data-testid', $(this).parent().data('testid'));
+        $("#editTestModal").attr('data-testslug', $(this).parent().attr('data-testslug'));
         const cell = $(this).closest('tr').find('td');
         let editTestForm = document.forms['editTestForm'];
 
@@ -23,7 +23,7 @@ const addEvents = () => {
         editTestForm['editConventional'].value = cell[2].innerHTML;
     });
 }
-
+// work on data management in panel
 const request = (url, method, data = {}) => {
     return new Promise((resolve, reject) => {
         $.ajax({
@@ -45,9 +45,24 @@ const request = (url, method, data = {}) => {
 const redrawTable = (tableSelector,data) => {
     let dt = $(tableSelector).dataTable();
     dt.fnClearTable(false);
+    if(data.length==0){
+        dt.fnClearTable();
+        return;
+    }
     dt.fnAddData(data);
     addEvents();
 }
+
+const createSlug=(inputStr)=>{
+    // Remove special characters and replace spaces with dashes
+    const slug = inputStr
+      .replace(/[^\w\s-]/g, '') // Remove special characters
+      .trim() // Trim leading and trailing spaces
+      .toLowerCase() // Convert to lowercase
+      .replace(/\s+/g, '-'); // Replace spaces with dashes
+  
+    return slug;
+  }
 
 const drawUsersTable = async () => {
     if (!tables['#users'].drawn) {
@@ -80,6 +95,8 @@ const drawUsersTable = async () => {
             ],
             processing: true,
             lengthChange: false, //show [10] entries
+            // "pageLength": 50,
+            // "lengthMenu": [ 10, 25, 50, 75, 100 ]
             // "searching": false,
             // order: [[1, 'asc']]
             // scrollY: 300,
@@ -134,7 +151,7 @@ const drawAdminsTable = async () => {
 
 const addTestActions = (test) => {
     test['createdAt'] = new Date(test['createdAt']).toDateString();
-    test['actions'] = `<div class="text-center" data-testid="${test._id}">
+    test['actions'] = `<div class="text-center" data-testslug="${test.slug}">
     <button class="btn btn-outline-info py-0 rip-shadow edit-test"
         data-toggle="modal" data-target="#editTestModal">
         <i class="fa fa-pencil-alt"></i> <small>Edit</small>
@@ -172,6 +189,7 @@ const drawTestsTable = async () => {
             ],
             processing: true,
             lengthChange: false, //show [10] entries
+            pageLength: 50,
         });
         addEvents();
         tables['#tests'].drawn = true;
@@ -222,7 +240,7 @@ $(document).ready(function () {
 $(".nav-link").click(function (e) {
     // e.preventDefault();
     $(".section").hide();
-    const section = $(this).data('section');
+    const section = $(this).attr('data-section');
     $(section).show();
     $('.nav-link').removeClass('active');
     $(this).addClass('active')
@@ -287,9 +305,9 @@ $("#dropAdminBtn").click(async function (e) {
 
 $("#deleteTestBtn").click(async function (e) {
     e.preventDefault();
-    // console.log($("#deleteTestModal").attr('data-testid'));
+    // console.log($("#deleteTestModal").attr('data-testslug'));
 
-    let response = await request(`/api/v1/tests/${$("#deleteTestModal").attr('data-testid')}`,
+    let response = await request(`/api/v1/tests/${$("#deleteTestModal").attr('data-testslug')}`,
         'DELETE', {}).then(deleted => {
             let response2 = request('/api/v1/tests', 'GET').then(data => {
                 data.forEach(addTestActions)
@@ -307,6 +325,7 @@ $("#addTestForm").submit(async function (e) {
     let newTestForm = document.forms['addTestForm'];
     const newTest = {
         name: newTestForm['testName'].value,
+        slug: createSlug(newTestForm['testName'].value),
         si: newTestForm['si'].value,
         conventional: newTestForm['conventional'].value
     }
@@ -331,14 +350,16 @@ $("#addTestForm").submit(async function (e) {
 });
 $("#editTestForm").submit(async function (e) {
     e.preventDefault();
+    const slug = $("#editTestModal").attr('data-testslug');
     let editTestForm = document.forms['editTestForm'];
     const test = {
         name: editTestForm['editTestName'].value,
+        slug: slug,
         si: editTestForm['editSi'].value,
         conventional: editTestForm['editConventional'].value
     }
 
-    let response = await request(`/api/v1/tests/${$("#editTestModal").data('testid')}`,
+    let response = await request(`/api/v1/tests/${slug}`,
         'POST', test)
         .then(editedData => {
             let response2 = request('/api/v1/tests', 'GET').then(data => {
@@ -358,14 +379,14 @@ $("#editTestForm").submit(async function (e) {
 });
 $(".discard-form").click(function (e) {
     e.preventDefault();
-    document.forms[$(this).data('form')].reset();
+    document.forms[$(this).attr('data-form')].reset();
 });
 
 
 
 $(".delete-data").click(function (e) {
     e.preventDefault();
-    $("#deleteDataModal").attr('data-dataid', $(this).parent().data('dataid'));
+    $("#deleteDataModal").attr('data-dataid', $(this).parent().attr('data-dataid'));
 });
 $("#deleteDataBtn").click(function (e) {
     e.preventDefault();
@@ -373,7 +394,7 @@ $("#deleteDataBtn").click(function (e) {
 });
 $(".edit-Data").click(function (e) {
     e.preventDefault();
-    $("#editDataModal").attr('data-dataid', $(this).parent().data('dataid'));
+    $("#editDataModal").attr('data-dataid', $(this).parent().attr('data-dataid'));
     let editDataForm = document.forms['editDataForm'];
     // editDataForm['editTestName'].value = 'banana';
     // editDataForm['editSi'].value = 'carrot';
@@ -408,6 +429,6 @@ $("#editDataForm").submit(function (e) {
 
 $(".discard-form").click(function (e) {
     e.preventDefault();
-    document.forms[$(this).data('form')].reset();
+    document.forms[$(this).attr('data-form')].reset();
 });
 

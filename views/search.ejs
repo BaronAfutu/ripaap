@@ -4,10 +4,10 @@
 
 
         <section id="main">
-            <div class="container rip-stretch-heigth">
+            <div class="container rip-stretch-heigth pt-3">
 
                 <div class="h-100">
-                    <div class="card rip-shadow my-5 mx-auto w-100 py-0">
+                    <div class="card rip-shadow mt-4 mx-auto w-100 py-0">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12 col-md-3 rip-border-right pb-3 pb-md-0">
@@ -38,7 +38,7 @@
                                             </div>
                                             <div class="form-control-lg custom-radio ml-3" id="testUnit">
                                                 <input class="custom-control-input" type="radio" name="testUnit"
-                                                    id="conventional" value="conventional">
+                                                    id="conventional" value="conventional" disabled>
                                                 <label class="custom-control-label" for="conventional" id="conventionalLabel">
                                                     Conventional
                                                 </label>
@@ -50,9 +50,9 @@
                                             <select name="ageGroup" id="ageGroup" class="form-control custom-select-sm"
                                                 required>
                                                 <option value=""></option>
-                                                <option value="pediatrics">Pediatrics</option>
-                                                <option value="adults">Adults</option>
-                                                <option value="geriatrics">Geriatrics</option>
+                                                <option value="pediatric">Pediatrics</option>
+                                                <option value="adult">Adults</option>
+                                                <option value="geriatric">Geriatrics</option>
                                             </select>
                                             <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with
                                         anyone else.</small> -->
@@ -62,10 +62,8 @@
                                             <label class="col-form-label-lg" for="country">Country</label>
                                             <select name="country" id="country" class="form-control select2-base"
                                                 required>
-                                                <option value="*">All</option>
-                                                <option value="ghana" disabled>Ghana</option>
-                                                <option value="southAfrica" disabled>South Africa</option>
-                                                <option value="kenya" disabled>Kenya</option>
+                                                <option value="" selected></option>
+                                                <%- include('templates/africanCountries') %>
                                             </select>
                                             <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with
                                         anyone else.</small> -->
@@ -85,7 +83,10 @@
 
                                 <div class="col-12 col-md-9 pt-3 pt-md-0 rip-border-left">
                                     <div class="w-100 bg-info text-center text-uppercase text-light mb-4">
-                                        <h6 class="p-3 font-weight-bold">Reference Interval Tables</h6>
+                                        <h6 class="p-3 font-weight-bold text-capitalize">
+                                            Reference Interval Tables - 
+                                            <span id="displayTestName"></span>
+                                        </h6>
                                     </div>
 
                                     <div id="placeholder" class="h-75 my-auto text-center" style="display: block;">
@@ -96,9 +97,9 @@
 
 
                                     <div id="resultTables" style="display: none;">
-                                        <div class="h5 text-center font-weight-bold">Hemoglobin (g/dL)</div>
+                                        <!-- <div id="displayTestName" class="h5 text-center font-weight-bold">Hemoglobin (g/dL)</div> -->
 
-                                        <div class="h5">Male Reference Intervals</div>
+                                        <div class="h5 font-weight-bold">Male Reference Intervals</div>
                                         <table id="maleRI" class="table table-responsive-lg border shadow">
                                             <thead class="bg-light">
                                                 <tr>
@@ -114,22 +115,22 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>3 - 6 months</td>
+                                                    <td>3 - 6 years</td>
                                                     <td>9.3</td>
                                                     <td>12.8</td>
-                                                    <td></td>
-                                                    <td>316 </td>
+                                                    <!-- <td></td> -->
+                                                    <td>500 </td>
                                                     <td>Schmidt et al., 2018 (South Africa)</td>
                                                     <td><a href="https://doi.org/10.1111/tmi.13009">
                                                             https://doi.org/10.1111/tmi.13009
                                                         </a></td>
                                                 </tr>
                                                 <tr>
-                                                    <td>16 - 17 </td>
+                                                    <td>16 - 17 years </td>
                                                     <td>11.1</td>
                                                     <td>16.7</td>
-                                                    <td></td>
-                                                    <td>110</td>
+                                                    <!-- <td></td> -->
+                                                    <td>500</td>
                                                     <td>Odhiambo et al., 2015 (Kenya)</td>
                                                     <td><a href="https://doi.org/10.1371/journal.pone.0123140">
                                                             https://doi.org/10.1371/journal.pone.0123140
@@ -149,10 +150,10 @@
 
 
 
+                                        <hr class="mt-3">
 
 
-
-                                        <div class="h5 mt-5">Female Reference Intervals</div>
+                                        <div class="h5 font-weight-bold my-3">Female Reference Intervals</div>
                                         <table id="femaleRI" class="table table-responsive-lg border shadow">
                                             <thead class="bg-light">
                                                 <tr>
@@ -171,7 +172,7 @@
                                                     <td>3 - 6 months</td>
                                                     <td>9.3</td>
                                                     <td>12.8</td>
-                                                    <td></td>
+                                                    <!-- <td></td> -->
                                                     <td>218 </td>
                                                     <td>Schmidt et al., 2018 (South Africa)</td>
                                                     <td><a href="https://doi.org/10.1111/tmi.13009" target="_blank" rel="noreferrer noopener">
@@ -182,7 +183,7 @@
                                                     <td>16 - 17 </td>
                                                     <td>11.1</td>
                                                     <td>16.7</td>
-                                                    <td></td>
+                                                    <!-- <td></td> -->
                                                     <td>132</td>
                                                     <td>Odhiambo et al., 2015 (Kenya)</td>
                                                     <td><a href="https://doi.org/10.1371/journal.pone.0123140" target="_blank" rel="noreferrer noopener">
@@ -206,9 +207,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
         </section>
 
