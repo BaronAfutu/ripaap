@@ -5,6 +5,7 @@ const testValidation = Joi.object({
     slug: Joi.string().regex(/^[a-z0-9-]+$/)
     .message('Invalid slug format. Only lowercase letters, numbers, and hyphens are allowed.')
     .required(),
+    type: Joi.string().required().valid('hematology','chemical'),
     si: Joi.string().lowercase().required(),
     conventional: Joi.string().allow("",null).default(null),
 })

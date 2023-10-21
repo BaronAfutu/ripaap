@@ -14,10 +14,24 @@
                                     <h5 class="font-weight-bold">Select the following:</h5>
 
                                     <form action="#" id="testForm">
-                                        <div class="form-group my-3 ml-3">
+
+                                        <div class="form-group my-2 ml-3">
+                                            <label class="col-form-label-lg" for="testType">Test Type</label>
+                                            <select name="testType" id="testType" class="form-control select2-base"
+                                                required>
+                                                <option value="" selected disabled> --- Select Test Type --- </option>
+                                                <option value="hematology">Hematology Analytes</option>
+                                                <option value="chemical">Chemical Analytes</option>
+                                            </select>
+                                            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+                                        anyone else.</small> -->
+                                        </div>
+
+
+                                        <div class="form-group my-2 ml-3">
                                             <label class="col-form-label-lg" for="testName">Test Name</label>
                                             <select name="testName" id="testName" class="form-control select2-base"
-                                                required>
+                                                required disabled>
                                                 <option value=""></option>
                                                 <option value="hemoglobin">Hemoglobin</option>
                                                 <option value="whiteBloodCells" disabled>White Blood Cells</option>
@@ -26,9 +40,9 @@
                                             <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with
                                         anyone else.</small> -->
                                         </div>
-                                        <div class="form-group my-3 ml-3">
+                                        <div class="form-group my-2 ml-3 d-none">
                                             <label class="col-form-label-lg mb-0 pb-0" for="testUnit">Test Unit</label>
-                                            <div class="form-control-lg custom-radio ml-3" id="testUnit">
+                                            <div class="form-control-sm custom-radio ml-3" id="testUnit">
                                                 <input class="custom-control-input" type="radio" name="testUnit"
                                                     id="siUnit" value="si" checked>
                                                 <label class="custom-control-label" for="siUnit" id="siUnitLabel">
@@ -36,7 +50,7 @@
                                                 </label>
                                                 <input type="hidden" id="token" value="<%= token %>" hidden>
                                             </div>
-                                            <div class="form-control-lg custom-radio ml-3" id="testUnit">
+                                            <div class="form-control-sm custom-radio ml-3" id="testUnit">
                                                 <input class="custom-control-input" type="radio" name="testUnit"
                                                     id="conventional" value="conventional" disabled>
                                                 <label class="custom-control-label" for="conventional" id="conventionalLabel">
@@ -45,10 +59,10 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group my-3 ml-3">
+                                        <div class="form-group my-1 ml-3">
                                             <label class="col-form-label-lg" for="ageGroup">Age Group</label>
                                             <select name="ageGroup" id="ageGroup" class="form-control custom-select-sm"
-                                                required>
+                                                required disabled>
                                                 <option value=""></option>
                                                 <option value="pediatric">Pediatrics</option>
                                                 <option value="adult">Adults</option>
@@ -58,12 +72,38 @@
                                         anyone else.</small> -->
                                         </div>
 
-                                        <div class="form-group my-3 ml-3">
+                                        <div class="form-group my-2 ml-3">
                                             <label class="col-form-label-lg" for="country">Country</label>
                                             <select name="country" id="country" class="form-control select2-base"
-                                                required>
+                                                required disabled>
                                                 <option value="" selected></option>
                                                 <%- include('templates/africanCountries') %>
+                                            </select>
+                                            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+                                        anyone else.</small> -->
+                                        </div>
+
+
+
+                                        <div class="form-group my-2 ml-3">
+                                            <div class="form-control-sm custom-checkbox ml-3">
+                                                <input class="custom-control-input" type="checkbox" name="onlyAnalyser"
+                                                    id="onlyAnalyser" value="yes" disabled>
+                                                <label class="form-control-sm custom-control-label py-0" for="onlyAnalyser" id="onlyAnalyserLabel">
+                                                    By Analyser Only
+                                                </label>
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="form-group my-2 ml-3">
+                                            <select name="analysers" id="analysers" class="form-control custom-select-sm"
+                                                disabled required>
+                                                <option value="sf">---</option>
+                                                
                                             </select>
                                             <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with
                                         anyone else.</small> -->

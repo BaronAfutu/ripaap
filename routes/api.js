@@ -5,7 +5,8 @@ const jwt = require('jsonwebtoken');
 const {
   createData,
   getData,
-  editData
+  editData,
+  getAnalysers
 } = require('../controllers/DataController')
 const { testValidation } = require('../helpers/validation');
 /**
@@ -37,6 +38,8 @@ router.get('/tests', async (req, res) => {
   if (!testList) return res.status(500).json({ success: false });
   res.json(testList);
 })
+
+router.get('/analysers/:test',getAnalysers);
 
 router.get('/data/:test', getData);
 
