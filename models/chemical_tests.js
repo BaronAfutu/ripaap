@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
-const creatinineSchema = mongoose.Schema({
+const chemical_testsSchema = mongoose.Schema({
+    name: {type:String, required: true},
     reference: { type: String, required: true },
     ageGroup: { type: String, required: true },
     pediatric: {type:Boolean, default: false},
@@ -18,6 +19,6 @@ const creatinineSchema = mongoose.Schema({
     link: { type: String, required: false }
 }, { timestamps: true })
 
-const creatinine = mongoose.model("creatinine", creatinineSchema);
+const chemical_tests = mongoose.model("chemical_tests", chemical_testsSchema);
 
-module.exports = creatinine;
+module.exports = chemical_tests;

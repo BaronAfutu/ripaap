@@ -26,15 +26,14 @@ const tests = {
     "cd8": require('../models/cd8'),
     "mch": require('../models/mch'),
     "mchc": require('../models/mchc'),
-    "creatinine": require('../models/creatinine'),
-
+    "chemical_tests": require('../models/chemical_tests')
 }
 
 const createData = (req, res) => {
     try {
         const { error, value } = dataValidation.validate(req.body);
         if (error) return res.status(400).json({ message: error.details[0].message })
-        if (!req.params.test in tests) return res.status(400).json({ "message": `'${req.params.test}' is not a valid test` });
+        if (!tests.hasOwnProperty(req.params.test)) return res.status(400).json({ "message": `'${req.params.test}' is not a valid test` });
 
         const data = new tests[req.params.test](value);
         data.save().then(newTest => {
@@ -78,9 +77,15 @@ const getData = async (req, res) => {
         dataFilter['country'] = { $regex: `.*${value.country}.*` };
         dataFilter[value.ageGroup] = true;
         if (value.gender > 0 && value.gender < 3) dataFilter['gender'] = value.gender;
+        if (!tests.hasOwnProperty(req.params.test)){
+            dataFilter['name'] = req.params.test;
+            req.params.test = "chemical_tests";
+        }
     }
 
     try {
+        console.log(dataFilter);
+        console.log(req.params.test)
         tests[req.params.test].find(dataFilter)
             .select('-pediatric -adult -geriatric')
             .sort('gender')
@@ -92,6 +97,7 @@ const getData = async (req, res) => {
                 res.status(500).json({ error: err });
             });
     } catch (error) {
+        console.log(error)
         return res.status(400).json({ message: "Bad Request!!" });
     }
 }
