@@ -1,5 +1,24 @@
-<!-- DASHBOARD -->
-<div class="mt-5 section" id="dashboard" style="min-height: 75vh;">
-    <h3>Dashboard</h3>
-    &nbsp;
-</div>
+<%- include('header') %>
+    <%- include('navbar',{'page':'dashboard'}) %>
+
+
+    <section id="main" class="rip-stretch-heigth" data-page="#dashboard">
+        <div class="container">
+
+            <!-- DASHBOARD -->
+            <div class="mt-5 section" id="dashboard" style="min-height: 75vh;">
+                <h3>Dashboard</h3>
+                &nbsp;
+            </div>
+
+
+        </div>
+    </section>
+
+    <%- include('../templates/footer') %>
+
+    <script type="text/javascript" src="/js/select2.min.js"></script>
+    <script type="text/javascript" src="/js/datatables.min.js"></script>
+    <script type="text/javascript" src="/js/panel.js"></script>
+
+</html>

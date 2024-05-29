@@ -1,8 +1,12 @@
 const mongoose = require('mongoose');
 
-const neutrophilslSchema = mongoose.Schema({
+const hematology_testsSchema = mongoose.Schema({
+    test: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Test',
+    },
     reference: { type: String, required: true },
-    ageGroup: { type: String, required: true, default: "" },
+    ageGroup: { type: String, required: false, default: "" },
     pediatric: { type: Boolean, default: false },
     adult: { type: Boolean, default: false },
     geriatric: { type: Boolean, default: false },
@@ -18,6 +22,6 @@ const neutrophilslSchema = mongoose.Schema({
     link: { type: String, required: false }
 }, { timestamps: true })
 
-const neutrophilsl = mongoose.model("neutrophilsl", neutrophilslSchema);
+const hematology_tests = mongoose.model("hematology_tests", hematology_testsSchema);
 
-module.exports = neutrophilsl;
+module.exports = hematology_tests;

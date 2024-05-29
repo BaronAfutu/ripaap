@@ -1,0 +1,151 @@
+<%- include('header') %>
+    <%- include('navbar',{'page':'upload'}) %>
+
+
+        <section id="main" class="rip-stretch-heigth" data-page="#upload">
+            <div class="container">
+
+
+
+
+
+
+                <!-- UPLOAD -->
+                <div class="mt-5 section" id="upload" style="min-height: 75vh;">
+                    <div class="row">
+                        <div class="col-6">
+                            <h3>Upload new Data</h3>
+                        </div>
+                        <div class="col-6 text-right">
+                            <a href="/templates/upload_template.csv" class="btn btn-success shadow"> <i
+                                    class="fa fa-download fa-lg"></i> Download Template</a>
+                        </div>
+                    </div>
+                    &nbsp;
+
+
+                    <form action="#" id="uploadTestForm">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-group my-2 ml-3">
+                                    <label class="col-form-label-lg" for="uploadTestType">Test Type</label>
+                                    <select name="testType" id="uploadTestType" class="form-control select2-base"
+                                        required>
+                                        <option value="" selected disabled> --- Select Test Type --- </option>
+                                        <option value="hematology">Hematology Analytes</option>
+                                        <option value="chemical">Chemical Analytes</option>
+                                    </select>
+                                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+        anyone else.</small> -->
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                <div class="form-group my-2 ml-3">
+                                    <label class="col-form-label-lg" for="uploadTestName">Test Name</label>
+                                    <select name="testName" id="uploadTestName" class="form-control select2-base"
+                                        required disabled>
+                                        <option value=""></option>
+                                    </select>
+                                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+        anyone else.</small> -->
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div class="form-group my-2 ml-3">
+                                    <label class="col-form-label-lg" for="uploadAgeGroup">Age Group</label>
+                                    <select name="ageGroup" id="uploadAgeGroup" class="form-control select2-base"
+                                        required>
+                                        <option value="" selected disabled> --- Select Age Group --- </option>
+                                        <option value="pediatric">Pediatric</option>
+                                        <option value="adult">Adult</option>
+                                        <option value="geriatric">Geriatric</option>
+                                    </select>
+                                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+        anyone else.</small> -->
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div class="form-group my-2 ml-3">
+                                    <label class="col-form-label-lg" for="findTest">
+                                        Can't find Test? <br>
+                                        <a class="nav-link btn btn-outline-secondary btn-sm mt-2" href="#tests"
+                                            data-section="#tests">
+                                            Add new Test
+                                        </a>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-9">
+                                <div class="form-group my-2 ml-3">
+                                    <label class="col-form-label-lg" for="uploadFile">Select Populated CSV File</label>
+                                    <input id="uploadFile" class="form-control" type="file" id="csv-file" accept=".csv">
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+                                <div class="form-group my-2 ml-3 text-right">
+                                    <label class="col-form-label-lg" for="checkPreview">
+                                        &nbsp;<br>
+                                        <button id="checkPreview" class="btn btn-outline-secondary mt-3" disabled> <i
+                                                class="fa fa-table fa-lg"></i> Check Preview</button>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="preview" class="text-center" style="display: none;">
+                            <table class="table table-responsive table-striped mt-4 pl-3" id="previewTable">
+                                <thead>
+                                    <tr>
+                                        <th>Reference</th>
+                                        <th>Age Group</th>
+                                        <th>LRL</th>
+                                        <th>URL</th>
+                                        <th>Mean</th>
+                                        <th>SD</th>
+                                        <th>CV</th>
+                                        <th>Sample Size</th>
+                                        <th>Gender</th>
+                                        <th>Unit</th>
+                                        <th>Analyser</th>
+                                        <th>Country</th>
+                                        <th>Link to Publication</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="text-center">
+                                        <!-- <td colspan="8"><div class="loader"></div></td> -->
+                                        <td colspan="12"><i class="fa fa-spinner fa-spin fa-5x"></i></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <button class="btn btn-success shadow btn-lg w-75 text-center my-3" id="uploadBtn"> Upload
+                                &nbsp; <i class="fa fa-upload fa-lg"></i></button>
+                        </div>
+
+
+
+                    </form>
+
+                </div>
+
+
+            </div>
+        </section>
+
+        <%- include('../templates/footer') %>
+
+            <script src="/js/datatables.min.js"></script>
+            <script type="text/javascript" src="/js/select2.min.js"></script>
+            <script type="text/javascript" src="/js/datatables.min.js"></script>
+            <script type="text/javascript" src="/js/panel.js"></script>
+            <script type="text/javascript" src="/js/uploadData.js"></script>
+
+            </html>

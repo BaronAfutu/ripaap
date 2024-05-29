@@ -29,7 +29,7 @@ const redrawTable = (tableSelector, data) => {
 
 const getAnalysers = async () => {
     // console.log("Getting Analysers");
-    await request(`/api/v1/analysers/${$("#testName").val()}`, 'GET')
+    await request(`/api/v1/analysers/${$('#testType').val()}/${$("#testName").val()}`, 'GET')
         .then(data => {
             let options = "<option value='' selected disabled>--- Select an Analyser ---</option>";
             let unique = {};
@@ -52,10 +52,10 @@ let tests = [];
 let tablesDrawn = false;
 
 const presentTests = () => {
-    let options = tests.filter((option) => {
-        return option.type == $('#testType').val();
-    }).map((option, index) => {
-        return `<option value="${option.slug}">${index + 1}. ${option.name}</option>`
+    let options = tests.filter((test) => {
+        return test.type == $('#testType').val();
+    }).map((test, index) => {
+        return `<option value="${test._id}">${index + 1}. ${test.name}</option>`
     })
     $("#testName").html(`<option value=""disabled selected> </option>
     ${options.join('')}`);
@@ -110,9 +110,9 @@ $('#testType').on('select2:select', function (e) {
 
 $('#testName').on('select2:select', function (e) {
     for (let test of tests) {
-        if (test.slug == $("#testName").val()) {
-            $("#siUnitLabel").html(`${test.si} (SI Unit)`);
-            $("#conventionalLabel").html(`${test.conventional || ""} (Conventional)`);
+        if (test._id == $("#testName").val()) {
+            // $("#siUnitLabel").html(`${test.si} (SI Unit)`);
+            // $("#conventionalLabel").html(`${test.conventional || ""} (Conventional)`);
             if (document.getElementById("onlyAnalyser").checked) {
                 getAnalysers();
             }
@@ -138,7 +138,7 @@ $("#testForm").submit(async function (e) {
     }
 
 
-    let response = await request(`/api/v1/data/${$("#testName").val()}`, 'GET', qry)
+    let response = await request(`/api/v1/data/${$('#testType').val()}/${$("#testName").val()}`, 'GET', qry)
         .then(data => {
             data.forEach(record => {
                 // FIX LINK HERE
@@ -154,7 +154,7 @@ $("#testForm").submit(async function (e) {
                 return record.gender == 2;
             })
             for (let test of tests) {
-                if (test.slug == $("#testName").val()) {
+                if (test._id == $("#testName").val()) {
                     $("#displayTestName").html(test.name)
                     break;
                 }

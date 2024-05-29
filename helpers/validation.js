@@ -3,32 +3,38 @@ const Joi = require('joi');
 const testValidation = Joi.object({
     name: Joi.string().required(),
     slug: Joi.string().regex(/^[a-z0-9-]+$/)
-    .message('Invalid slug format. Only lowercase letters, numbers, and hyphens are allowed.')
-    .required(),
-    type: Joi.string().required().valid('hematology','chemical'),
+        .message('Invalid slug format. Only lowercase letters, numbers, and hyphens are allowed.')
+        .required(),
+    type: Joi.string().required().valid('hematology', 'chemical'),
     si: Joi.string().lowercase().required(),
-    conventional: Joi.string().allow("",null).default(null),
+    conventional: Joi.string().allow("", null).default(null),
 })
 const dataValidation = Joi.object({
-    reference: Joi.string().required(),
-    ageGroup: Joi.string().required(),
-    lrl: Joi.number().min(0).required(),
-    url: Joi.number().min(0).required(),
-    pediatric: Joi.boolean().default(false),
-    adult: Joi.boolean().default(false),
-    geriatric: Joi.boolean().default(false),
-    mean: Joi.number().min(0).optional().allow(null),
-    sd: Joi.number().min(0).optional().allow(null),
-    cv: Joi.number().min(0).optional().allow(null),
-    sampleSize: Joi.number().min(0).optional().allow(null),
-    gender: Joi.number().min(1).max(2).required(),
-    country: Joi.string().required(),
-    link: Joi.string().optional().allow("",null)
+    data: Joi.array().items(
+        Joi.object().keys({
+            reference: Joi.string().required(),
+            ageGroup: Joi.string().required().allow("",null),
+            lrl: Joi.number().min(0).required(),
+            url: Joi.number().min(0).required(),
+            pediatric: Joi.boolean().default(false),
+            adult: Joi.boolean().default(false),
+            geriatric: Joi.boolean().default(false),
+            mean: Joi.number().min(0).optional().allow(null),
+            sd: Joi.number().min(0).optional().allow(null),
+            cv: Joi.number().min(0).optional().allow(null),
+            sampleSize: Joi.number().min(0).optional().allow(null),
+            gender: Joi.number().min(1).max(2).required(),
+            analyser: Joi.string().required().allow("",null),
+            country: Joi.string().required(),
+            link: Joi.string().optional().allow("", null),
+            test: Joi.string().required()
+        })
+    )
 })
 const dataFiltersValidation = Joi.object({
-    ageGroup: Joi.string().required().valid('pediatric','adult','geriatric'),
-    gender: Joi.number().valid(0,1,2).default(0),
-    country: Joi.string().required()
+    ageGroup: Joi.string().required().valid('pediatric', 'adult', 'geriatric'),
+    gender: Joi.number().valid(0, 1, 2).default(0),
+    country: Joi.string().allow("",null).default(null)
 })
 const editDataValidation = Joi.object({
     reference: Joi.string().optional(),
@@ -44,16 +50,16 @@ const editDataValidation = Joi.object({
     sampleSize: Joi.number().min(0).optional().allow(null),
     gender: Joi.number().min(1).max(2).optional(),
     country: Joi.string().optional(),
-    link: Joi.string().optional().allow("",null)
+    link: Joi.string().optional().allow("", null)
 })
 
 const userValidation = Joi.object({
     title: Joi.string().min(2).max(5).required(),
-    position: Joi.string().trim().allow('',null),
+    position: Joi.string().trim().allow('', null),
     firstName: Joi.string().trim().required(),
     lastName: Joi.string().trim().required(),
     email: Joi.string().trim().email().required().lowercase(),
-    institution: Joi.string().trim().allow('',null),
+    institution: Joi.string().trim().allow('', null),
     city: Joi.string().trim().required(),
     country: Joi.string().required(),
     password: Joi.string().min(3).required()

@@ -7,6 +7,11 @@ router.get('/', function (req, res, next) {
   res.render('index', { subTitle: '' , user:req.session.user||undefined});
 });
 
+
+router.get('/about', function (req, res, next) {
+  res.render('about', { subTitle: '- About' , user:req.session.user||undefined});
+});
+
 router.get('/login', (req, res) => {
   if(req.session.user) return res.redirect('/');
   if (typeof req.query.next == 'undefined') {
