@@ -33,7 +33,8 @@
 
         for (let i = 1; i < lines.length; i++) { // change 3 to lines.length
             if (lines[i] == "" || lines[i] == null) continue;
-            const values = lines[i].split(/,(?! )/);
+            lines[i] = lines[i].replace(/,\s+,/,",,");
+            const values = lines[i].split(/,(?! )/); //split by commas not in sentences. ie. commas not followed by space
             if (values[0] == "" || values[0] == null) continue;
             const rowObject = {};
             try {
@@ -47,6 +48,7 @@
                     if (!isNaN(parseFloat(value)) && header != "ageGroup") value = parseFloat(value);
                     // if (!isNaN(parseFloat(value)) && !/[A-Za-z]/.test(value)) value = parseFloat(value);
                     if ((header == 'sd' || header == 'cv' || header == 'sampleSize') && value == "") value = null;
+                    if (header=='mean' && value=="") value = (rowObject['lrl']+rowObject['url'])/2;
                     if (unit == "" && header == 'unit') unit = value;
 
                     rowObject[header] = value;
@@ -56,13 +58,14 @@
                 rowObject['pediatric'] = $("#uploadAgeGroup").val() == 'pediatric';
                 rowObject['adult'] = $("#uploadAgeGroup").val() == 'adult';
                 rowObject['geriatric'] = $("#uploadAgeGroup").val() == 'geriatric';
-                delete rowObject['unit']
+                delete rowObject['unit'];
+                jsonData.push(rowObject);
                 // rowObject[]
             } catch (err) {
-                console.log(values);
+                // console.log(values);
+                $("#showError").html($("#showError").html()+" - Record ["+lines[i]+"] containes an error!!<br>Make sure all values are corrently entered in the record. Continuing will upload without it.!!<br>");
                 console.log(err)
             }
-            jsonData.push(rowObject);
         }
 
         return jsonData;
@@ -76,8 +79,11 @@
             const fileInput = document.getElementById('uploadFile');
 
             fileInput.addEventListener('change', (e) => {
+
+                $('#loaderModal').modal('show');
+
+
                 // Get the selected file
-                // console.log(fileInput.files.length)
                 const file = fileInput.files[0];
 
                 // Create a FileReader object
@@ -99,6 +105,9 @@
                 reader.readAsText(file);
 
                 $("#checkPreview").removeAttr('disabled');
+                setTimeout(() => {
+                    $('#loaderModal').modal('hide');
+                }, 500);
             });
         }
 
@@ -156,12 +165,13 @@
                 alert("Select CSV file!!")
                 return;
             }
-            $("#preview").show();
+            $("#preview").removeClass('d-none');
             drawPreviewTable(JSONdata,unit);
         });
 
         $("#uploadBtn").click(async function (e) {
             e.preventDefault();
+            $('#loaderModal').modal('show');
             let data = await request(`/api/v1/data/${$('#uploadTestType').val()}/${$("#uploadTestName").val()}`, 'POST', { "data": JSONdata })
                 .then(data => {
                     // Refresh the page after a delay of 3 seconds
@@ -173,8 +183,11 @@
                 })
                 .catch(err => {
                     console.log(err)
+                    setTimeout(() => {
+                        $('#loaderModal').modal('hide');
+                    }, 500);
+                    $("#showError").html("There was an error uploading the file. Refresh the page and try again!!<br>");
                 })
-
         });
 
         $("#filterBtn").click(async function (e) {
@@ -193,7 +206,7 @@
             }
             let response = await request(`/api/v1/data/${$('#uploadTestType').val()}/${$("#uploadTestName").val()}`, 'GET', {"ageGroup":$("#uploadAgeGroup").val()})
                 .then(data => {
-                    if(!tables["#data"].drawn)$("#preview").show();
+                    if(!tables["#data"].drawn)$("#preview").removeClass('d-none');
                     drawDataTable(data);
                 }).catch(err => {
                     console.log(err)

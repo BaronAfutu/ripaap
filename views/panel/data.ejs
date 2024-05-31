@@ -63,7 +63,8 @@
                                 <div class="form-group my-2 ml-3">
                                     <label class="col-form-label-lg" for="findTest">
                                         &nbsp; <br>
-                                        <button class="nav-link btn btn-outline-secondary btn-sm mt-2 h1" id="filterBtn">
+                                        <button class="nav-link btn btn-outline-secondary btn-sm mt-2 h1"
+                                            id="filterBtn">
                                             <i class="fa fa-funnel"></i> Filter
                                         </button>
                                     </label>
@@ -72,7 +73,7 @@
                         </div>
                     </form>
 
-                    <div id="preview" class="text-center overflow--auto" style="display: none;">
+                    <div id="preview" class="text-center overflow--auto d-none">
                         <table class="table table-responsive table-striped mt-4 pl-3" id="dataTable">
                             <thead>
                                 <tr>
@@ -207,11 +208,7 @@
             </div>
         </section>
 
-        <%- include('../templates/footer') %>
-
-            <script type="text/javascript" src="/js/select2.min.js"></script>
-            <script type="text/javascript" src="/js/datatables.min.js"></script>
-            <script type="text/javascript" src="/js/panel.js"></script>
+        <%- include('../templates/footer',{'extra':true,'panel':true}) %>
             <script type="text/javascript" src="/js/uploadData.js"></script>
 
             </html>

@@ -15,12 +15,6 @@
     <button id="testReload" class="btn btn-outline-success"><i class="fa fa-plus"></i> User</button>
 </div> -->
                     </div>
-                    <!-- <div class="row">
-<div class="col-3">
-Filter By
-</div>
-<div class="col-3"></div>
-</div> -->
 
                     <table class="table table-responsive table-striped mt-4 pl-3" id="adminsTable">
                         <thead>
@@ -70,9 +64,6 @@ Filter By
             </div>
         </section>
 
-        <%- include('../templates/footer') %>
-            <script type="text/javascript" src="/js/select2.min.js"></script>
-            <script type="text/javascript" src="/js/datatables.min.js"></script>
-            <script type="text/javascript" src="/js/panel.js"></script>
+        <%- include('../templates/footer',{'extra':true,'panel':true}) %>
 
             </html>

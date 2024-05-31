@@ -4,34 +4,34 @@
 
 $("#registerBtn").click(function (e) {
     e.preventDefault();
-    $("#loginCard").hide();
-    $("#registerCard").show();
+    $("#loginCard").addClass('d-none');
+    $("#registerCard").removeClass('d-none');
 });
 $("#loginBtn").click(function (e) {
     e.preventDefault();
-    $("#loginCard").show();
-    $("#registerCard").hide();
+    $("#loginCard").removeClass('d-none');
+    $("#registerCard").addClass('d-none');
 });
 
 $("#confirmPassword").keyup(function (e) {
     if ($(this).val().length > 0) {
         if ($("#registerPassword").val() != $(this).val()) {
-            $("#confirmPasswordLabel").show();
+            $("#confirmPasswordLabel").removeClass('d-none');
             $("#registerSubmit").attr('disabled', 'disabled');
             return;
         }
-        $("#confirmPasswordLabel").hide();
+        $("#confirmPasswordLabel").addClass('d-none');
         $("#registerSubmit").removeAttr('disabled');
     }
 });
 $("#registerPassword").keyup(function (e) {
     if ($("#confirmPassword").val().length > 0) {
         if ($("#confirmPassword").val() != $(this).val()) {
-            $("#confirmPasswordLabel").show();
+            $("#confirmPasswordLabel").removeClass('d-none');
             $("#registerSubmit").attr('disabled', 'disabled');
             return;
         }
-        $("#confirmPasswordLabel").hide();
+        $("#confirmPasswordLabel").addClass('d-none');
         $("#registerSubmit").removeAttr('disabled');
     }
 });

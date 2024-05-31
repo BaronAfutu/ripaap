@@ -6,8 +6,8 @@
         <section id="main">
             <div class="container rip-stretch-heigth pt-3">
 
-                <div id="loginCard" class="py-5 my-4" <% if(typeof status!='undefined' && status.form!='login'){ %> 
-                    style="display: none;" <% } %> >
+                <div id="loginCard" class="py-5 my-4 <% if(typeof status!='undefined' && status.form!='login'){ %> 
+                    d-none <% } %>" >
                         <div class="card rip-shadow my-5 mx-auto rip-w-50">
                             <form action="/users/login" method="POST">
                                 <div class="card-header text-center">
@@ -55,8 +55,8 @@
 
 
 
-                <div class="card rip-shadow my-5 mx-auto rip-w-50" id="registerCard" <% if(typeof status=='undefined' ||
-                    status.form!='register' ){ %> style="display: none;" <% } %>>
+                <div id="registerCard" class="card rip-shadow my-5 mx-auto rip-w-50 <% if(typeof status=='undefined' ||
+                    status.form!='register' ){ %> d-none <% } %>">
                         <form action="/users/register" method="POST">
                             <div class="card-header text-center">
                                 <span class="card-title h5">Register for the RIPAAP Database</span>
@@ -451,8 +451,7 @@
                                                 aria-describedby="confirmPasswordLabel" id="confirmPassword" required
                                                 minlength="3"> <br>
                                         </div>
-                                        <small id="confirmPasswordLabel" class="form-text text-danger ml-2"
-                                            style="display: none;">
+                                        <small id="confirmPasswordLabel" class="form-text text-danger ml-2 d-none">
                                             Passwords do not Match!!
                                         </small>
 
@@ -473,7 +472,7 @@
         </section>
 
 
-        <%- include('templates/footer') %>
+        <%- include('templates/footer',{'extra':false,'panel':false}) %>
             <script src="/js/loginPage.js"></script>
 
             </html>

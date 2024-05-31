@@ -6,7 +6,7 @@
         <div class="container">
 
             <!-- DASHBOARD -->
-            <div class="mt-5 section" id="dashboard" style="min-height: 75vh;">
+            <div class="mt-5 section rip-min-height" id="dashboard">
                 <h3>Dashboard</h3>
                 &nbsp;
             </div>
@@ -15,10 +15,6 @@
         </div>
     </section>
 
-    <%- include('../templates/footer') %>
-
-    <script type="text/javascript" src="/js/select2.min.js"></script>
-    <script type="text/javascript" src="/js/datatables.min.js"></script>
-    <script type="text/javascript" src="/js/panel.js"></script>
+    <%- include('../templates/footer',{'extra':true,'panel':true}) %>
 
 </html>

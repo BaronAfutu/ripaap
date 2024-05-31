@@ -165,7 +165,8 @@ Filter By
                                                 <span class="input-group-text" id="editTestTypeLabel">Test Type</span>
                                             </div>
                                             <select class="form-control" aria-label="testType"
-                                                aria-describedby="testTypeLabel" name="editTestType" id="editTestType" required>
+                                                aria-describedby="testTypeLabel" name="editTestType" id="editTestType"
+                                                required>
                                                 <option value="" selected disabled>--- Select Test Type ---</option>
                                                 <option value="hematology">Hematology</option>
                                                 <option value="chemical">Chemical</option>
@@ -190,11 +191,6 @@ Filter By
             </div>
         </section>
 
-        <%- include('../templates/footer') %>
+        <%- include('../templates/footer',{'extra':true,'panel':true}) %>
 
-            <script src="/js/datatables.min.js"></script>
-            <script type="text/javascript" src="/js/select2.min.js"></script>
-            <script type="text/javascript" src="/js/datatables.min.js"></script>
-            <script type="text/javascript" src="/js/panel.js"></script>
-            
             </html>

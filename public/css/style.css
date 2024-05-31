@@ -24,6 +24,9 @@ a {
 .rip-stretch-heigth{
   min-height: 82vh;
 }
+.rip-min-height{
+  min-height: 75vh;
+}
 .rip-nav-pill{
   border-radius: 10rem;
 }
@@ -91,4 +94,9 @@ table.dataTable tbody td {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+#loaderModal .modal-content{
+  background-color: transparent;
+  border: none;
 }

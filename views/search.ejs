@@ -126,14 +126,14 @@
                                         </h6>
                                     </div>
 
-                                    <div id="placeholder" class="h-75 my-auto text-center" style="display: block;">
+                                    <div id="placeholder" class="h-75 my-auto text-center">
                                         <div class="h-25 my-5">&nbsp;</div>
                                         <div class="h-25  h3">Please Select Search Options</div>
                                         <div class="h-25 my-5">&nbsp;</div>
                                     </div>
 
 
-                                    <div id="resultTables" style="display: none;">
+                                    <div id="resultTables" class="d-none">
                                         <!-- <div id="displayTestName" class="h5 text-center font-weight-bold">Hemoglobin (g/dL)</div> -->
 
                                         <div class="h5 font-weight-bold">Male Reference Intervals</div>
@@ -250,9 +250,7 @@
 
 
 
-        <%- include('templates/footer') %>
-        <script type="text/javascript"  src="/js/select2.min.js"></script>
-        <script type="text/javascript"  src="/js/datatables.min.js"></script>
+        <%- include('templates/footer',{'extra':true,'panel':false}) %>
         <script type="text/javascript"  src="/js/searchPage.js"></script>
 
         </html>

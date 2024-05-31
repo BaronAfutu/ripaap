@@ -235,7 +235,7 @@ const drawPreviewTable = async (JSONdata,unit) => {
         return;
     }
 
-    console.log(displayData);
+    // console.log(displayData);
     table = new DataTable('#previewTable', {
         aaData: displayData,
         columns: [
@@ -480,7 +480,7 @@ $("#deleteDataBtn").click(async function (e) {
             alert("Data deleted!!");
             let response = await request(`/api/v1/data/${$('#uploadTestType').val()}/${$("#uploadTestName").val()}`, 'GET', {"ageGroup":$("#uploadAgeGroup").val()})
                 .then(data => {
-                    if(!tables["#data"].drawn)$("#preview").show();
+                    if(!tables["#data"].drawn)$("#preview").removeClass('d-none');
                     drawDataTable(data);
                 }).catch(err => {
                     console.log(err)

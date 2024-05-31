@@ -162,8 +162,8 @@ $("#testForm").submit(async function (e) {
 
 
             if (!tablesDrawn) {
-                $("#placeholder").hide();
-                $("#resultTables").show();
+                $("#placeholder").addClass('d-none');
+                $("#resultTables").removeClass('d-none');
                 new DataTable('#maleRI', {
                     aaData: maleData,
                     columns: [
