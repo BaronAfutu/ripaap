@@ -271,7 +271,6 @@ const drawDataTable = async (data) => {
     data.forEach(addDataActions)
     if (tables['#data'].drawn) {
         redrawTable("#dataTable", data);
-        console.log("Redrawing")
         return;
     }
 
@@ -334,10 +333,10 @@ const addTestActions = (test) => {
 const addDataActions = (data) => {
     // test['createdAt'] = new Date(test['createdAt']).toDateString();
     data['actions'] = `<div class="text-center" data-id="${data._id}">
-    <button class="btn btn-outline-info py-0 rip-shadow edit-data"
+    <!-- <button class="btn btn-outline-info py-0 rip-shadow edit-data"
         data-toggle="modal" data-target="#editDataModal">
         <i class="fa fa-pencil-alt"></i> <small>Edit</small>
-    </button> &nbsp;
+    </button> &nbsp; -->
     <button class="btn btn-outline-danger py-0 rip-shadow delete-data"
         data-toggle="modal" data-target="#deleteDataModal">
         <i class="fa fa-trash"></i> <small>Delete</small>

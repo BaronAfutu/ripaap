@@ -33,7 +33,7 @@
 
         for (let i = 1; i < lines.length; i++) { // change 3 to lines.length
             if (lines[i] == "" || lines[i] == null) continue;
-            lines[i] = lines[i].replace(/,\s+,/,",,");
+            lines[i] = lines[i].replace(/,\s+,/, ",,");
             const values = lines[i].split(/,(?! )/); //split by commas not in sentences. ie. commas not followed by space
             if (values[0] == "" || values[0] == null) continue;
             const rowObject = {};
@@ -48,7 +48,7 @@
                     if (!isNaN(parseFloat(value)) && header != "ageGroup") value = parseFloat(value);
                     // if (!isNaN(parseFloat(value)) && !/[A-Za-z]/.test(value)) value = parseFloat(value);
                     if ((header == 'sd' || header == 'cv' || header == 'sampleSize') && value == "") value = null;
-                    if (header=='mean' && value=="") value = (rowObject['lrl']+rowObject['url'])/2;
+                    if (header == 'mean' && value == "") value = (rowObject['lrl'] + rowObject['url']) / 2;
                     if (unit == "" && header == 'unit') unit = value;
 
                     rowObject[header] = value;
@@ -63,7 +63,7 @@
                 // rowObject[]
             } catch (err) {
                 // console.log(values);
-                $("#showError").html($("#showError").html()+" - Record ["+lines[i]+"] containes an error!!<br>Make sure all values are corrently entered in the record. Continuing will upload without it.!!<br>");
+                $("#showError").html($("#showError").html() + " - Record [" + lines[i] + "] containes an error!!<br>Make sure all values are corrently entered in the record. Continuing will upload without it.!!<br>");
                 console.log(err)
             }
         }
@@ -166,7 +166,7 @@
                 return;
             }
             $("#preview").removeClass('d-none');
-            drawPreviewTable(JSONdata,unit);
+            drawPreviewTable(JSONdata, unit);
         });
 
         $("#uploadBtn").click(async function (e) {
@@ -192,25 +192,33 @@
 
         $("#filterBtn").click(async function (e) {
             e.preventDefault();
-            if(!$('#uploadTestType').val()){
+
+            $('#loaderModal').modal('show');
+
+            if (!$('#uploadTestType').val()) {
                 alert("Select Test Type!!");
                 return;
             }
-            if(!$('#uploadTestName').val()){
+            if (!$('#uploadTestName').val()) {
                 alert("Select Test Name!!");
                 return;
             }
-            if(!$('#uploadAgeGroup').val()){
+            if (!$('#uploadAgeGroup').val()) {
                 alert("Select Age Group!!");
                 return;
             }
-            let response = await request(`/api/v1/data/${$('#uploadTestType').val()}/${$("#uploadTestName").val()}`, 'GET', {"ageGroup":$("#uploadAgeGroup").val()})
+            let response = await request(`/api/v1/data/${$('#uploadTestType').val()}/${$("#uploadTestName").val()}`, 'GET', { "ageGroup": $("#uploadAgeGroup").val() })
                 .then(data => {
-                    if(!tables["#data"].drawn)$("#preview").removeClass('d-none');
+                    if (!tables["#data"].drawn) $("#preview").removeClass('d-none');
                     drawDataTable(data);
                 }).catch(err => {
+                    alert("There was a problem getting the data!!");
                     console.log(err)
                 })
+
+            setTimeout(() => {
+                $('#loaderModal').modal('hide');
+            }, 500);
 
         });
     });

@@ -124,6 +124,7 @@ $('#testName').on('select2:select', function (e) {
 // GETTING THE DATA
 $("#testForm").submit(async function (e) {
     e.preventDefault();
+    $('#loaderModal').modal('show');
     let qry = {};
     if (!document.getElementById("onlyAnalyser").checked) {
         qry = {
@@ -159,6 +160,10 @@ $("#testForm").submit(async function (e) {
                     break;
                 }
             }
+
+            setTimeout(() => {
+                $('#loaderModal').modal('hide');
+            }, 500); // remove loader before show tables. Will be unnoticed due to speed
 
 
             if (!tablesDrawn) {
